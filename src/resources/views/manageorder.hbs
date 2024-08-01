@@ -1,0 +1,545 @@
+<div class="accordion" id="manageorder">
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseZero" aria-expanded="true" aria-controls="collapseZero">
+                <strong>Trạng thái đơn hàng</strong>
+            </button>
+        </h2>
+        <div id="collapseZero" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <div class="d-flex flex-row mb-3">
+                    <div class="p-2">
+                        <form method='POST' action='/searchorderid'>  
+                            <div class='input-group' style='max-width: 250px'>
+                                <input
+                                    type='text'
+                                    name='searchorderid'
+                                    class='form-control border-primary'
+                                    placeholder="ID đơn hàng"
+                                />
+                                <button class='btn btn-outline-primary' type='submit'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="p-2">
+                        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class='table-responsive mt-4'>
+                    <form method="POST" action="/updatestatusorder/{{fullOrder.[0].id}}" class="d-inline">
+                    <small>
+                    <table class='table table-hover text-center align-middle'>
+                        <thead class="text-uppercase">
+                            <tr>
+                                    <th>ID</th>
+                                    <th>Khách hàng</th>
+                                    <th>Sản phẩm</th>
+                                    <th>Số lượng</th>
+                                    <th>Tổng tiền</th>
+                                    <th>Địa chỉ giao hàng</th>
+                                    <th>Thanh toán</th>
+                                    <th>Vận chuyển</th>
+                                    <th>Thời gian</th>
+                                    <th>
+                                        <!-- Button trigger modal 1-->
+                                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#ModalQuery1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                            <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+                                        </svg>
+                                        </button>
+                                    </th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="table-group-divider">
+                                <tr>
+                                    <td>{{fullOrder.[0].id}}</td>
+                                    <td>
+                                        <div>
+                                            <p class="mb-0"><strong>{{fullOrder.[0].customer_name}}</strong></p>
+                                            <p class="mb-0">{{fullOrder.[0].customer_phone}}</p>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div>
+                                            <p class="mb-0"><strong>{{fullOrder.[0].product_name}}</strong></p>
+                                            <p class="mb-0">#{{fullOrder.[0].product_id}}</p>
+                                        </div>
+                                    </td>
+                                
+                                    <td>{{fullOrder.[0].quantity}}</td>
+                                    <td>{{fullOrder.[0].amount}}đ</td>
+                                    <td>{{fullOrder.[0].address}}</td>
+                                    <td>
+                                        <select id="status_paymentSelect" name="status_payment" class="form-select form-select-sm">
+                                            <option value = 0 {{#eq fullOrder.[0].status_payment 0}}selected{{/eq}}>
+                                                Chưa thanh toán
+                                            </option>
+                                            <option value=1 {{#eq fullOrder.[0].status_payment 1}}selected{{/eq}}>
+                                                Đã thanh toán
+                                            </option>
+                                            <option value=2 {{#eq fullOrder.[0].status_payment 2}}selected{{/eq}}>
+                                                Huỷ thanh toán
+                                            </option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="status_shipmentSelect" name="status_shipment" class="form-select form-select-sm">
+                                            <option value =0 {{#eq fullOrder.[0].status_shipment 0}}selected{{/eq}}>
+                                                Đang xử lý
+                                            </option>
+                                            <option value=1 {{#eq fullOrder.[0].status_shipment 1}}selected{{/eq}}>
+                                                Đang giao hàng
+                                            </option>
+                                            <option value=2 {{#eq fullOrder.[0].status_shipment 2}}selected{{/eq}}>
+                                                Đã giao hàng
+                                            </option>
+                                            <option value=3 {{#eq fullOrder.[0].status_shipment 3}}selected{{/eq}}>
+                                                Huỷ giao hàng
+                                            </option>
+                                        </select>
+                                    </td>
+                                    <td>{{moment fullOrder.[0].created_at format='DD/MM/YYYY HH:mm:ss'}}</td>
+                                    <td>
+                                        <button type="submit" class="btn btn-outline-primary btn-sm">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                                                <path d="M13.485 1.757a1.5 1.5 0 0 1 0 2.121l-7.07 7.071a1.5 1.5 0 0 1-2.122 0L1.636 8.293a1.5 1.5 0 1 1 2.122-2.121l1.768 1.768 6.364-6.364a1.5 1.5 0 0 1 2.121 0z"/>
+                                            </svg>
+                                        </button>
+                                    </td>
+                                </tr>
+                        </tbody>   
+                    </table>  
+                    </small>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <strong>Đơn hàng cần hoàn tiền</strong>
+            </button>
+        </h2>
+
+        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <div class='mt-4'>
+                    <small>
+                        <table class='table table-hover text-center align-middle'>
+                            <thead class="text-uppercase">
+                                <tr>
+                                        <th>ID</th>
+                                        <th>Khách hàng</th>
+                                        <th>Sản phẩm</th>
+                                        <th>Số lượng</th>
+                                        <th>Tổng tiền</th>
+                                        <th>Địa chỉ giao hàng</th>
+                                        <th>Thanh toán</th>
+                                        <th>Vận chuyển</th>
+                                        <th>Thời gian</th>
+                                        <th>
+                                            <!-- Button trigger modal 2-->
+                                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#ModalQuery2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                                <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+                                            </svg>
+                                            </button>
+                                        </th>
+                                </tr>
+                            </thead>
+
+                            <tbody class="table-group-divider">
+                                {{#each refundOrder}}    
+                                    <tr>
+                                        <td>{{this.id}}</td>
+                                        <td>
+                                            <div>
+                                                <p class="mb-0"><strong>{{this.customer_name}}</strong></p>
+                                                <p class="mb-0">{{this.customer_phone}}</p>
+                                            </div>
+                                        </td>
+    
+                                        <td>
+                                            <div>
+                                                <p class="mb-0"><strong>{{this.product_name}}</strong></p>
+                                                <p class="mb-0">#{{this.product_id}}</p>
+                                            </div>
+                                        </td>
+                                    
+                                        <td>{{this.quantity}}</td>
+                                        <td>{{this.amount}}đ</td>
+                                        <td>{{this.address}}</td>
+                                        <td>
+                                        {{#eq this.status_payment 0}}
+                                            <span class='badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill'>
+                                                Chưa thanh toán
+                                            </span>
+                                        {{else}}
+                                            {{#eq this.status_payment 1}}
+                                                <span class='badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill'>
+                                                    Đã thanh toán
+                                                </span>
+                                            {{else}}
+                                                <span class='badge bg-danger-subtle border border-danger-subtle text-danger-emphasis rounded-pill'>
+                                                    Huỷ thanh toán
+                                                </span>
+                                            {{/eq}}
+                                        {{/eq}}
+                                    </td>
+                                    <td>
+                                        {{#eq this.status_shipment 0}}
+                                            <span
+                                                class='badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill'
+                                            >Đang xử lý</span>
+                                        {{else}}
+                                            {{#eq this.status_shipment 1}}
+                                                <span
+                                                    class='badge bg-info-subtle border border-info-subtle text-info-emphasis rounded-pill'
+                                                >Đang giao hàng</span>
+                                            {{else}}
+                                                {{#eq this.status_shipment 2}}
+                                                    <span
+                                                        class='badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill'
+                                                    >Đã giao hàng</span>
+                                                {{else}}
+                                                    <span
+                                                        class='badge bg-danger-subtle border border-danger-subtle text-danger-emphasis rounded-pill'
+                                                    >Huỷ giao hàng</span>
+                                                {{/eq}}
+                                            {{/eq}}
+                                        {{/eq}}
+                                    </td>
+                                    <td>{{moment this.created_at format='DD/MM/YYYY HH:mm:ss'}}</td>
+                                    <td>
+                                        <form method="POST" action="/refundorder/{{this.id}}" class="d-inline">
+                                            <button type="submit" class="btn btn-outline-primary btn-sm">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                                                    <path d="M13.485 1.757a1.5 1.5 0 0 1 0 2.121l-7.07 7.071a1.5 1.5 0 0 1-2.122 0L1.636 8.293a1.5 1.5 0 1 1 2.122-2.121l1.768 1.768 6.364-6.364a1.5 1.5 0 0 1 2.121 0z"/>
+                                                </svg>
+                                            </button>
+                                        </form>
+                                    </td>
+                                    </tr>
+                            </tbody>  
+                            {{/each}} 
+                        </table>  
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="accordion-item">
+    <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+            <strong>Đơn hàng chưa thanh toán</strong>
+        </button>
+    </h2>
+    <form method='POST' action='/manageorder'>  
+        <div class='input-group pt-4 ps-4' style='max-width: 350px'>
+        <input
+            type='number'
+            name='customer_phone'
+            class='form-control border-primary'
+            placeholder="Số điện thoại khách hàng"
+        />
+        <button class='btn btn-outline-primary' type='submit'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+            </svg>
+        </button>
+        </div>
+    </form>
+    {{!-- Unpaid Table --}}
+    <div id="collapseTwo" class="accordion-collapse show" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+            <div class='mt-4'>
+                <small>
+                    <table class='table table-hover text-center align-middle'>
+                        <thead class="text-uppercase">
+                            <tr>
+                                    <th>ID</th>
+                                    <th>Khách hàng</th>
+                                    <th>Sản phẩm</th>
+                                    <th>Số lượng</th>
+                                    <th>Tổng tiền</th>
+                                    <th>Địa chỉ giao hàng</th>
+                                    <th>Thanh toán</th>
+                                    <th>Vận chuyển</th>
+                                    <th>Thời gian</th>
+                                    <th>
+                                        <!-- Button trigger modal 3-->
+                                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#ModalQuery3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                            <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+                                        </svg>
+                                        </button>
+                                    </th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="table-group-divider">
+                            {{#each unpaidOrder}}    
+                                <tr>
+                                    <td>{{this.id}}</td>
+                                    <td>
+                                        <div>
+                                            <p class="mb-0"><strong>{{this.customer_name}}</strong></p>
+                                            <p class="mb-0">{{this.customer_phone}}</p>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div>
+                                            <p class="mb-0"><strong>{{this.product_name}}</strong></p>
+                                            <p class="mb-0">#{{this.product_id}}</p>
+                                        </div>
+                                    </td>
+                                
+                                    <td>{{this.quantity}}</td>
+                                    <td>{{this.amount}}đ</td>
+                                    <td>{{this.address}}</td>
+                                    <td>
+                                    {{#eq this.status_payment 0}}
+                                        <span class='badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill'>
+                                            Chưa thanh toán
+                                        </span>
+                                    {{else}}
+                                        {{#eq this.status_payment 1}}
+                                            <span class='badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill'>
+                                                Đã thanh toán
+                                            </span>
+                                        {{else}}
+                                            <span class='badge bg-danger-subtle border border-danger-subtle text-danger-emphasis rounded-pill'>
+                                                Huỷ thanh toán
+                                            </span>
+                                        {{/eq}}
+                                    {{/eq}}
+                                </td>
+                                <td>
+                                    {{#eq this.status_shipment 0}}
+                                        <span
+                                            class='badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill'
+                                        >Đang xử lý</span>
+                                    {{else}}
+                                        {{#eq this.status_shipment 1}}
+                                            <span
+                                                class='badge bg-info-subtle border border-info-subtle text-info-emphasis rounded-pill'
+                                            >Đang giao hàng</span>
+                                        {{else}}
+                                            {{#eq this.status_shipment 2}}
+                                                <span
+                                                    class='badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill'
+                                                >Đã giao hàng</span>
+                                            {{else}}
+                                                <span
+                                                    class='badge bg-danger-subtle border border-danger-subtle text-danger-emphasis rounded-pill'
+                                                >Huỷ giao hàng</span>
+                                            {{/eq}}
+                                        {{/eq}}
+                                    {{/eq}}
+                                </td>
+                                <td>{{moment this.created_at format='DD/MM/YYYY HH:mm:ss'}}</td>
+                                <td>
+                                    <form method="POST" action="/paidorder/{{this.id}}" class="d-inline">
+                                        <button type="submit" class="btn btn-outline-primary btn-sm">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                                                <path d="M13.485 1.757a1.5 1.5 0 0 1 0 2.121l-7.07 7.071a1.5 1.5 0 0 1-2.122 0L1.636 8.293a1.5 1.5 0 1 1 2.122-2.121l1.768 1.768 6.364-6.364a1.5 1.5 0 0 1 2.121 0z"/>
+                                            </svg>
+                                        </button>
+                                    </form>
+                                </td>
+                                </tr>
+                        </tbody>  
+                        {{/each}} 
+                    </table>  
+                </small>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+{{!-- Offcanvas to show all orders --}}
+                    <div class="offcanvas offcanvas-bottom custom-height" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasBottomLabel">Tất cả các orders</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body small">
+                        <small>
+                            <table class='table table-hover text-center align-middle'>
+                                <thead class="text-uppercase">
+                                    <tr>
+                                            <th>ID</th>
+                                            <th>Khách hàng</th>
+                                            <th>Sản phẩm</th>
+                                            <th>Số lượng</th>
+                                            <th>Tổng tiền</th>
+                                            <th>Địa chỉ giao hàng</th>
+                                            <th>Thanh toán</th>
+                                            <th>Vận chuyển</th>
+                                            <th>Thời gian</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody class="table-group-divider">
+                                    {{#each allOrder}}    
+                                        <tr>
+                                            <td>{{this.id}}</td>
+                                            <td>
+                                                <div>
+                                                    <p class="mb-0"><strong>{{this.customer_name}}</strong></p>
+                                                    <p class="mb-0">{{this.customer_phone}}</p>
+                                                </div>
+                                            </td>
+        
+                                            <td>
+                                                <div>
+                                                    <p class="mb-0"><strong>{{this.product_name}}</strong></p>
+                                                    <p class="mb-0">#{{this.product_id}}</p>
+                                                </div>
+                                            </td>
+                                        
+                                            <td>{{this.quantity}}</td>
+                                            <td>{{this.amount}}đ</td>
+                                            <td>{{this.address}}</td>
+                                            <td>
+                                            {{#eq this.status_payment 0}}
+                                                <span class='badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill'>
+                                                    Chưa thanh toán
+                                                </span>
+                                            {{else}}
+                                                {{#eq this.status_payment 1}}
+                                                    <span class='badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill'>
+                                                        Đã thanh toán
+                                                    </span>
+                                                {{else}}
+                                                    <span class='badge bg-danger-subtle border border-danger-subtle text-danger-emphasis rounded-pill'>
+                                                        Huỷ thanh toán
+                                                    </span>
+                                                {{/eq}}
+                                            {{/eq}}
+                                        </td>
+                                        <td>
+                                            {{#eq this.status_shipment 0}}
+                                                <span
+                                                    class='badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill'
+                                                >Đang xử lý</span>
+                                            {{else}}
+                                                {{#eq this.status_shipment 1}}
+                                                    <span
+                                                        class='badge bg-info-subtle border border-info-subtle text-info-emphasis rounded-pill'
+                                                    >Đang giao hàng</span>
+                                                {{else}}
+                                                    {{#eq this.status_shipment 2}}
+                                                        <span
+                                                            class='badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill'
+                                                        >Đã giao hàng</span>
+                                                    {{else}}
+                                                        <span
+                                                            class='badge bg-danger-subtle border border-danger-subtle text-danger-emphasis rounded-pill'
+                                                        >Huỷ giao hàng</span>
+                                                    {{/eq}}
+                                                {{/eq}}
+                                            {{/eq}}
+                                        </td>
+                                        <td>{{moment this.created_at format='DD/MM/YYYY HH:mm:ss'}}</td>
+                                        </tr>
+                                </tbody>  
+                                {{/each}} 
+                            </table>  
+                        </small>
+                    </div>
+                    </div>
+{{!-- END Offcanvas to show all orders --}}
+
+<!-- Modal 1-->
+<div class="modal fade modal-xl" id="ModalQuery1" tabindex="-1" aria-labelledby="ModalQuery1Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="ModalQuery1Label">Update Status Order</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="postgresql" style="font-size: 18px;">
+ -- Search Order --
+SELECT o.id, c.name as customer_name, c.phone as customer_phone, p.name as product_name, p.id as product_id, o.quantity, o.amount::money::numeric::float8, o.address, o.status_payment, o.status_shipment, o.created_at
+FROM orders o 
+LEFT JOIN customers c ON o.customer_id = c.id
+LEFT JOIN products p ON o.product_id = p.id
+WHERE o.id = $1
+-- Update status order --            
+UPDATE orders SET status_payment = $1, status_shipment = $2 WHERE id = $3
+        </code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 2-->
+<div class="modal fade modal-xl" id="ModalQuery2" tabindex="-1" aria-labelledby="ModalQuery2Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="ModalQuery2Label">Refunding Order</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="postgresql" style="font-size: 18px;">
+-- Search refunding order --
+SELECT o.id, c.name as customer_name, c.phone as customer_phone, p.name as product_name, p.id as product_id, o.quantity, o.amount::money::numeric::float8, o.address, o.status_payment, o.status_shipment, o.created_at
+FROM orders o 
+LEFT JOIN customers c ON o.customer_id = c.id
+LEFT JOIN products p ON o.product_id = p.id
+WHERE (o.status_payment = 1) AND  (o.status_shipment = 3)
+-- Update status order --
+UPDATE orders SET status_payment = 2 WHERE id = $1
+        </code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 3-->
+<div class="modal fade modal-xl" id="ModalQuery3" tabindex="-1" aria-labelledby="ModalQuery3Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="ModalQuery3Label">Unpaid order </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="postgresql" style="font-size: 18px;">
+-- Search Unpaid order --
+SELECT o.id, c.name as customer_name, c.phone as customer_phone, p.name as product_name, p.id as product_id, o.quantity, o.amount::money::numeric::float8, o.address, o.status_payment, o.status_shipment, o.created_at
+FROM orders o 
+LEFT JOIN customers c ON o.customer_id = c.id
+LEFT JOIN products p ON o.product_id = p.id
+WHERE (o.status_payment = 0) AND (COALESCE($1, phone) = phone)
+-- Update status order --
+UPDATE orders SET status_payment = 1 WHERE id = $1
+        </code></pre>
+      </div>
+    </div>
+  </div>
+</div>

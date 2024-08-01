@@ -1,0 +1,164 @@
+{{!-- Product card --}}
+<div class='row row-cols-1 row-cols-md-4 g-4'>
+    <div class='col'>
+        <div class='card h-100'>
+            <img
+                src='https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/s/s/ss-s24-ultra-xam-222.png'
+                class='card-img-top'
+            />
+            <div class='card-body'>
+                <h6 class='card-title'>Samsung S24 Ultra</h6>
+                <p class='card-text'>
+                    <div class='text-danger me-2'><b>28.490.000 VND</b></div>
+                    <div class='text-secondary'><small><s>33.990.000 VND</s></small></div>
+                </p>
+
+            </div>
+            <div class='card-footer text-body-secondary text-center'>
+                <a
+                    href='#'
+                    class='btn btn-sm btn-primary'
+                    style='width: 40%'
+                >Edit</a>
+                <a
+                    href='#'
+                    class='btn btn-sm btn-danger'
+                    style='width: 40%'
+                >Remove</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- Product card ver2 --}}
+<div class='container mt-5 my-5'>
+    <div class='d-flex justify-content-center row'>
+        <div class='col-md-12'>
+            <div class='row p-2 border rounded'>
+
+                <div class='col-md-3 mt-1'>
+                    <div class='row'>
+                        <div
+                            class='col-md-6 align-items-center align-content-center'
+                        >
+                            <div class='text-secondary'>#P100101</div>
+                            <div class='text-primary'><small>5 sản phẩm</small></div>
+                        </div>
+                        <div class='col-md-6 border-start'>
+                            <img
+                                class='img-fluid img-responsive'
+                                src='https://cdn.hoanghamobile.com/i/productlist/ts/Uploads/2024/01/16/s24-ultra-vang_638409930027889246.png'
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class='align-content-center col-md-4 mt-1'>
+                    <h5>Samsung S24 Ultra</h5>
+                    <div class='d-flex flex-row align-items-center'>
+                        <div class='text-danger me-2'><b>28.490.000₫</b></div>
+                        <div class='text-secondary'><small><s
+                                >33.990.000₫</s></small></div>
+                    </div>
+                    <div class='text-secondary'><small>Màu sắc: Vàng</small></div>
+                </div>
+                <div
+                    class='align-items-center align-content-center col-md-3 mt-1 border-start'
+                >
+                    <div class='text-secondary'><small>Nhà sản xuất: Samsung</small></div>
+                    <div class='text-secondary'><small>Năm sản xuất: 2024</small></div>
+
+                </div>
+                <div
+                    class='align-items-center align-content-center col-md-2 border-start'
+                >
+                    <a
+                        href='#'
+                        class='btn btn-sm btn-primary my-2'
+                        style='width: 100%'
+                    >Edit</a>
+                    <a
+                        href='#'
+                        class='btn btn-sm btn-outline-danger'
+                        style='width: 100%'
+                    >Remove</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{{!-- Product for home page --}}
+{{#each products}}
+<div class='container mt-1 my-3'>
+    <div class='d-flex justify-content-center row'>
+        <div class='col-md-12'>
+            <div class='row p-2 border rounded'>
+                <div class='col-md-3 mt-1 '>
+                    <div class='row'>
+                        <div class='col-md-6 align-items-center align-content-center' >
+                            <div class='text-secondary'>#{{this.id}}</div>
+                            <div class='text-primary'><small>{{this.quantity}} sản phẩm</small></div>
+                        </div>
+                        <div class='col-md-6 border-start'>
+                            <img
+                                class='img-fluid img-responsive'
+                                src='{{this.image}}'
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class='align-content-center col-md-4 mt-1'>
+                    <h5>{{this.name}}</h5>
+                    <div class='d-flex flex-row align-items-center'>
+                        <div class='text-danger me-2'><b>{{this.price}}₫</b></div>
+                        <div class='text-secondary'><small><s
+                                >33.990.000₫</s></small></div>
+                    </div>
+                    <div class='text-secondary'><small>Nhà sản xuất: {{this.supplier_id}}</small></div>
+                    <div class='text-secondary'><small>Năm sản xuất: {{moment this.mgf format='DD/MM/YYYY'}}</small></div>
+                </div>
+                <div class='align-items-center align-content-center col-md-3 mt-1 border-start' >
+                    <div class='text-secondary'><small>{{this.description}}</small></div>
+                </div>
+                <div class='align-items-center align-content-center col-md-2 border-start'>
+                    <a
+                        href='#'
+                        class='btn btn-sm btn-primary my-2'
+                        style='width: 100%'
+                    >Edit</a>
+                    <a
+                        href='#'
+                        class='btn btn-sm btn-outline-danger'
+                        style='width: 100%'
+                    >Remove</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{/each}}
+
+
+{{!-- Table --}}
+<div class='mt-4'>
+    <table class='table table-hover  align-middle'>
+        <thead class="text-center">
+            <tr>
+                {{#each allCustomers.[0]}}
+                    <th>{{@key}}</th>
+                {{/each}}
+            </tr>
+        </thead>
+
+        <tbody class="table-group-divider">
+            {{#each allCustomers}}
+                <tr>
+                    {{#each this}}
+                        <td>{{this}}</td>
+                    {{/each}}
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

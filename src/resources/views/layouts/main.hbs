@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="vi" data-bs-theme="dark">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark-dimmed.min.css">
+        <link rel="icon" href="https://images.squarespace-cdn.com/content/v1/6151fc1de9760e17a20b7128/fe78d701-101b-4da8-ae9f-62c854214941/3S_140220_LOGO_-39.png" type="image/png">
+        <title>3S</title>
+        <link rel="stylesheet" href="/css/app.css">
+        <link rel="stylesheet" href="/src/public/fonts/fontawesome-6.5.2/css/all.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    </head>
+
+    <body class="bg-body-tertiary" style="font-family: 'Montserrat';font-size: 14px;">
+        <div class="app">
+            <div class="container-fluid">
+                {{> header}}
+                <div class="row g-2">
+                    <div class="col-1 d-flex flex-column">
+                        {{> sidebar}}
+                    </div>
+                    <div class="col-11">
+                        {{{body}}}
+                    </div>
+                </div>
+                <i class="fa-solid fa-house"></i>
+                {{> footer}}   
+            </div>         
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+    </body>       
+</html> 

@@ -1,0 +1,143 @@
+<div class="p-3 bg-body rounded shadow-sm">
+    <h3><strong>Delete Supplier</strong></h3>
+    {{!-- Input --}}
+    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+            <div class='mt-4'>
+                <form method='POST' action='/removesupplier/{{supplierinfo.[0].id}}'>
+                    <div class="row">
+                        <div class='col-9'>
+                            <div class="row">
+                                <div class='col-3 mb-3'>
+                                    <label for='id-input' class='form-label'>ID:</label>
+                                    <input
+                                        type='text'
+                                        name='id'
+                                        class='form-control'
+                                        id='id-input'
+                                        value = {{supplierinfo.[0].id}}
+                                        disabled
+                                    />
+                                </div>
+                                <div class='col-3 mb-3'>
+                                    <label for='name-input' class='form-label'>Nhà sản xuất:</label>
+                                    <input
+                                        type='text'
+                                        name='name'
+                                        class='form-control'
+                                        id='name-input'
+                                        value = '{{supplierinfo.[0].name}}'
+                                        disabled
+                                    />
+                                </div>
+                                <div class='col-6 mb-3'>
+                                    <label for='address-input' class='form-label'>Địa chỉ:</label>
+                                    <input
+                                        type='text'
+                                        name='address'
+                                        class='form-control'
+                                        id='address-input'
+                                        value = '{{supplierinfo.[0].address}}'
+                                        disabled
+                                    />
+                                </div>
+                                <div class='col-12 mb-3'>
+                                    <label for='description-input' class='form-label'>Mô tả:</label>
+                                    <textarea
+                                        type='text'
+                                        name='description'
+                                        class='form-control'
+                                        id='description-input'
+                                        rows="3"
+                                        disabled
+                                    >{{supplierinfo.[0].description}}</textarea>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button type='submit' class='btn btn-danger' {{#if resultSearch}}disabled{{/if}}>Xoá dữ liệu</button>
+                                <!-- Button trigger modal 1-->
+                                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#ModalQuery1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+                                </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class='col-3  pt-4'>
+                            <div class="card border-danger mb-3" style="max-width: 18rem;">
+                                <h6 class="card-header text-danger">Cảnh báo</h6>
+                                <div class="card-body text-danger">
+                                    <p class="card-text">Nhà sản xuất <strong>{{supplierinfo.[0].name}}</strong> không thể xoá nếu có sản phẩm thuộc nhà sản xuất này</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{#if resultSearch}}
+    <small>
+    <div class="alert alert-danger mt-4" role="alert">   
+        <div class="d-flex justify-content-between">
+            <div class="align-self-center">Không thể xoá <strong>{{supplierinfo.[0].name}}</strong> do có sản phẩm thuộc nhà sản xuất này</div>
+            <a class="btn btn-danger btn-sm" href="/searchsupplier" role="button">Quay lại</a>
+        </div>
+    </div>
+    <table class='table table-hover text-center mt-2 align-middle'>
+        <thead class="text-center text-uppercase">
+            <tr>
+                {{#each resultSearch.[0]}}
+                    <th>{{@key}}</th>
+                {{/each}}
+            </tr>
+        </thead>
+
+        <tbody class="table-group-divider">
+            {{#each resultSearch}}
+                <tr>
+                    <td>{{this.id}}</td>
+                    <td>{{this.name}}</td>
+                    <td>{{this.catalog}}</td>
+                    <td>{{this.supplier_id}}</td>
+                    <td>{{moment this.mgf format='DD/MM/YYYY'}}</td>
+                    <td>{{this.price}}</td>
+                    <td>{{this.base_price}}</td>
+                    <td>{{this.discount}}</td>
+                    <td>{{this.quantity}}</td>
+                    <td>Mô tả</td>
+                    <td><a href="{{this.image}}">Link</a></td>
+                    <td>{{moment this.created_at format='DD/MM/YYYY HH:mm:ss'}}</td>
+                    <td>{{moment this.updated_at format='DD/MM/YYYY HH:mm:ss'}}</td>
+                </tr>
+            {{/each}}
+        </tbody>   
+    </table>
+    </small>                
+{{else}}
+    <div class="alert alert-primary mt-4" role="alert">   
+        <div class="d-flex justify-content-between">
+            <div class="align-self-center">Có thể xoá Nhà sản xuất <strong>{{supplierinfo.[0].name}}</strong> do khônng có sản phẩm nào thuộc nhà sản xuất này</div>
+            <a class="btn btn-primary btn-sm" href="/searchsupplier" role="button">Quay lại</a>
+        </div>
+    </div>
+{{/if}}
+
+<!-- Modal 1-->
+<div class="modal fade modal-xl" id="ModalQuery1" tabindex="-1" aria-labelledby="ModalQuery1Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="ModalQuery1Label">Delete supplier</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="postgresql" style="font-size: 18px;">
+DELETE FROM suppliers WHERE id = $1
+        </code></pre>
+      </div>
+    </div>
+  </div>
+</div>

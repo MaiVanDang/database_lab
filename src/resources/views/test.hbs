@@ -1,0 +1,228 @@
+<div class='mt-4'>
+    <table class='table table-hover align-middle'>
+        <thead class="text-center">
+            <tr>
+                {{#each test.[0]}}
+                    <th>{{@key}}</th>
+                {{/each}}
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            <tr>
+                <td>{{test.[0].id}}</td>
+            </tr>
+            {{#eachFromIndex test 2}}
+            <tr>
+                <td>{{this.id}}</td>
+            </tr>
+            {{/eachFromIndex}}
+        </tbody>
+    </table>
+</div>
+
+<div class='row row-cols-1 row-cols-md-4 g-4'>
+    <div class='col'>
+        <div class='card h-100'>
+            <img
+                src='https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/s/s/ss-s24-ultra-xam-222.png'
+                class='card-img-top'
+            />
+            <div class='card-body'>
+                <h6 class='card-title'>Samsung S24 Ultra</h6>
+                <p class='card-text'>
+                    <div class='text-danger me-2'><b>28.490.000 VND</b></div>
+                    <div class='text-secondary'><small><s>33.990.000 VND</s></small></div>
+                </p>
+
+            </div>
+            <div class='card-footer text-body-secondary text-center'>
+                <a
+                    href='#'
+                    class='btn btn-sm btn-primary'
+                    style='width: 40%'
+                >Edit</a>
+                <a
+                    href='#'
+                    class='btn btn-sm btn-danger'
+                    style='width: 40%'
+                >Remove</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Accordion Item #1
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="mt-4">
+                        <form class="needs-validation" method="POST" action="/addcustomer" novalidate>
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="row">
+                                        <div class="col-5 mb-3">
+                                            <label for="name-input" class="form-label">Tên:</label>
+                                            <input type="text" name="name" class="form-control" id="name-input" placeholder="Nguyễn Văn A" required />
+                                            <div class="invalid-feedback">
+                                                Vui lòng nhập tên.
+                                            </div>
+                                        </div>
+                                        <div class="col-3 mb-3">
+                                            <label for="age-input" class="form-label">Tuổi:</label>
+                                            <input type="number" name="age" class="form-control" id="age-input" placeholder="18" />
+                                            <div class="invalid-feedback">
+                                                Vui lòng nhập tuổi.
+                                            </div>
+                                        </div>
+                                        <div class="col-4 mb-3">
+                                            <label for="genderSelect" class="form-label">Giới tính:</label>
+                                            <select id="genderSelect" name="gender" class="form-select">
+                                                <option selected value="">Giới tính</option>
+                                                <option value="Nam">Nam</option>
+                                                <option value="Nữ">Nữ</option>
+                                                <option value="Khác">Khác</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Vui lòng chọn giới tính.
+                                            </div>
+                                        </div>
+                                        <div class="col-5 mb-3">
+                                            <label for="email-input" class="form-label">Email:</label>
+                                            <input type="email" name="email" class="form-control" id="email-input" placeholder="customer@example.com" required />
+                                            <div class="invalid-feedback">
+                                                Vui lòng nhập email hợp lệ.
+                                            </div>
+                                        </div>
+                                        <div class="col-3 mb-3">
+                                            <label for="phone-input" class="form-label">Số điện thoại:</label>
+                                            <input type="tel" name="phone" class="form-control" id="phone-input" placeholder="0123456789" required />
+                                            <div class="invalid-feedback">
+                                                Vui lòng nhập số điện thoại.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary">Thêm dữ liệu</button>
+                                    </div>
+                                </div>
+                                <div class="col-3 pt-4">
+                                    <div class="card border-warning mb-3" style="max-width: 18rem;">
+                                        <h6 class="card-header text-warning">Chú ý</h6>
+                                        <div class="card-body text-warning">
+                                            <p class="card-text">Điền đầy thông tin trường "Tên" và trường "Email"</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+
+    <script>
+        (function() {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+
+<script>
+    console.log('Name:', '{{this.name}}');
+    console.log('Age:', '{{this.age}}');
+    console.log('Gender:', '{{this.gender}}');
+    console.log('Email:', '{{this.email}}');
+    console.log('Phone:', '{{this.phone}}');
+</script>
+
+<!-- Button trigger modal 1-->
+                                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#ModalQuery1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+                                </svg>
+                                </button>
+
+                                
+<!-- Modal 1-->
+<div class="modal fade modal-xl" id="ModalQuery1" tabindex="-1" aria-labelledby="ModalQuery1Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="ModalQuery1Label">Search customer</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="postgresql" style="font-size: 18px;">
+SELECT * FROM customers 
+WHERE (COALESCE($1, name) = name OR $1 IS NULL) 
+AND (COALESCE($2, age) = age OR $2 IS NULL) 
+AND (COALESCE($3, gender) = gender OR $3 IS NULL) 
+AND (COALESCE($4, email) = email OR $4 IS NULL) 
+AND (COALESCE($5, phone) = phone OR $5 IS NULL)
+        </code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Toast Trigger Button -->
+    <button type="button" class="btn btn-success" id="toastTrigger">
+        Show The Toast
+    </button>
+
+    <!-- Toast Container -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div class="toast text-bg-success border-0" id="toastAlert">
+            <div class="d-flex">
+                <div class="toast-body">
+                    <strong>Success!</strong>
+                    This is a success toast.
+                </div>
+                <button
+                    type="button"
+                    class="btn-close btn-close-white me-2 m-auto"
+                    data-bs-dismiss="toast"
+                ></button>
+            </div>
+        </div>
+    </div>
+<script>
+const toastTrigger = document.getElementById('toastTrigger');
+const toastAlert = document.getElementById('toastAlert');
+
+if (toastTrigger) {
+    toastTrigger.addEventListener('click', () => {
+
+        const toast = new bootstrap.Toast(toastAlert);
+        toast.show();
+
+    });
+}
+</script>

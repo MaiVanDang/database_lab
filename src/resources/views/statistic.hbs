@@ -1,0 +1,797 @@
+<div class="container justify-content-center align-items-center">
+	<div class="row">
+		{{!-- TOP doanh số 2 --}}
+		<div class="col-4 p-1 pt-3">
+			<div class="card text-center border-info text-info">
+			<div class="card-header">
+				<svg xmlns='http://www.w3.org/2000/svg' class='bi' width='16' height='16' fill='currentColor' style="color: #0dcaf0;" viewBox="0 0 576 512">
+					<path d="M400 0H176c-26.5 0-48.1 21.8-47.1 48.2c.2 5.3 .4 10.6 .7 15.8H24C10.7 64 0 74.7 0 88c0 92.6 33.5 157 78.5 200.7c44.3 43.1 98.3 64.8 138.1 75.8c23.4 6.5 39.4 26 39.4 45.6c0 20.9-17 37.9-37.9 37.9H192c-17.7 0-32 14.3-32 32s14.3 32 32 32H384c17.7 0 32-14.3 32-32s-14.3-32-32-32H357.9C337 448 320 431 320 410.1c0-19.6 15.9-39.2 39.4-45.6c39.9-11 93.9-32.7 138.2-75.8C542.5 245 576 180.6 576 88c0-13.3-10.7-24-24-24H446.4c.3-5.2 .5-10.4 .7-15.8C448.1 21.8 426.5 0 400 0zM48.9 112h84.4c9.1 90.1 29.2 150.3 51.9 190.6c-24.9-11-50.8-26.5-73.2-48.3c-32-31.1-58-76-63-142.3zM464.1 254.3c-22.4 21.8-48.3 37.3-73.2 48.3c22.7-40.3 42.8-100.5 51.9-190.6h84.4c-5.1 66.3-31.1 111.2-63 142.3z"/>
+				</svg>
+				<strong>Top {{topSuppliers.[1].rank_num}} doanh số</strong>
+			</div>
+			<div class="card-body">
+				<h5 class="card-title">
+					<strong>{{topSuppliers.[1].supplier_name}}</strong>
+				</h5>
+				<p class="card-text">{{topSuppliers.[1].supplier_address}}</p>
+				<div class="row">
+					<div class="col-6">
+						<small class="d-inline-flex px-2 py-1 fw-semibold text-info-emphasis bg-info-subtle border border-info-subtle rounded-2">
+							Sản phẩm đã bán
+						</small>  
+						<p class="pt-2 m-0">{{topSuppliers.[1].total_quantity_sold}}</p>
+					</div>
+					<div class="col-6">
+						<small class="d-inline-flex px-2 py-1 fw-semibold text-info-emphasis bg-info-subtle border border-info-subtle rounded-2">
+							Đơn hàng đã bán
+						</small>  
+						<p class="pt-2 m-0">{{topSuppliers.[1].total_order}}</p>
+					</div>
+				</div>
+			</div>
+			<div class="card-footer bg-info-subtle">
+				Tổng lợi nhuận: {{topSuppliers.[1].total_amount}} VND
+			</div>
+			</div>
+		</div>
+		{{!-- Best lợi nhuận 1 --}}
+		<div class="col-4 p-1">
+			<div class="card text-center border-warning text-warning">
+			<div class="card-header pt-3 pb-3">
+				<svg xmlns='http://www.w3.org/2000/svg' class='bi' width='16' height='16' fill='currentColor' style="color: #ffc107;" viewBox="0 0 576 512">
+					<path d="M400 0H176c-26.5 0-48.1 21.8-47.1 48.2c.2 5.3 .4 10.6 .7 15.8H24C10.7 64 0 74.7 0 88c0 92.6 33.5 157 78.5 200.7c44.3 43.1 98.3 64.8 138.1 75.8c23.4 6.5 39.4 26 39.4 45.6c0 20.9-17 37.9-37.9 37.9H192c-17.7 0-32 14.3-32 32s14.3 32 32 32H384c17.7 0 32-14.3 32-32s-14.3-32-32-32H357.9C337 448 320 431 320 410.1c0-19.6 15.9-39.2 39.4-45.6c39.9-11 93.9-32.7 138.2-75.8C542.5 245 576 180.6 576 88c0-13.3-10.7-24-24-24H446.4c.3-5.2 .5-10.4 .7-15.8C448.1 21.8 426.5 0 400 0zM48.9 112h84.4c9.1 90.1 29.2 150.3 51.9 190.6c-24.9-11-50.8-26.5-73.2-48.3c-32-31.1-58-76-63-142.3zM464.1 254.3c-22.4 21.8-48.3 37.3-73.2 48.3c22.7-40.3 42.8-100.5 51.9-190.6h84.4c-5.1 66.3-31.1 111.2-63 142.3z"/>
+				</svg>
+				<strong>Top {{topSuppliers.[0].rank_num}} doanh số</strong>
+			</div>
+			<div class="card-body">
+				<h5 class="card-title">
+					<strong>{{topSuppliers.[0].supplier_name}}</strong>
+				</h5>
+				<p class="card-text">{{topSuppliers.[0].supplier_address}}</p>
+				<div class="row">
+					<div class="col-6">
+						<small class="d-inline-flex px-2 py-1 fw-semibold text-warning-emphasis bg-warning-subtle border border-warning-subtle rounded-2">
+							Sản phẩm đã bán
+						</small>  
+						<p class="pt-2 m-0">{{topSuppliers.[0].total_quantity_sold}}</p>
+					</div>
+					<div class="col-6">
+						<small class="d-inline-flex px-2 py-1 fw-semibold text-warning-emphasis bg-warning-subtle border border-warning-subtle rounded-2">
+							Đơn hàng đã bán
+						</small>  
+						<p class="pt-2 m-0">{{topSuppliers.[0].total_order}}</p>
+					</div>
+				</div>
+			</div>
+			<div class="card-footer bg-warning-subtle">
+				Tổng lợi nhuận: {{topSuppliers.[0].total_amount}} VND
+			</div>
+			</div>
+		</div>
+		{{!-- Best lợi nhuận 3 --}}
+		<div class="col-4 p-1 pt-3">
+			<div class="card text-center border-success text-success">
+			<div class="card-header">
+				<svg xmlns='http://www.w3.org/2000/svg' class='bi' width='16' height='16' fill='currentColor' style="color: #198754;" viewBox="0 0 576 512">
+					<path d="M400 0H176c-26.5 0-48.1 21.8-47.1 48.2c.2 5.3 .4 10.6 .7 15.8H24C10.7 64 0 74.7 0 88c0 92.6 33.5 157 78.5 200.7c44.3 43.1 98.3 64.8 138.1 75.8c23.4 6.5 39.4 26 39.4 45.6c0 20.9-17 37.9-37.9 37.9H192c-17.7 0-32 14.3-32 32s14.3 32 32 32H384c17.7 0 32-14.3 32-32s-14.3-32-32-32H357.9C337 448 320 431 320 410.1c0-19.6 15.9-39.2 39.4-45.6c39.9-11 93.9-32.7 138.2-75.8C542.5 245 576 180.6 576 88c0-13.3-10.7-24-24-24H446.4c.3-5.2 .5-10.4 .7-15.8C448.1 21.8 426.5 0 400 0zM48.9 112h84.4c9.1 90.1 29.2 150.3 51.9 190.6c-24.9-11-50.8-26.5-73.2-48.3c-32-31.1-58-76-63-142.3zM464.1 254.3c-22.4 21.8-48.3 37.3-73.2 48.3c22.7-40.3 42.8-100.5 51.9-190.6h84.4c-5.1 66.3-31.1 111.2-63 142.3z"/>
+				</svg>
+				<strong>Top {{topSuppliers.[2].rank_num}} doanh số</strong>
+			</div>
+			<div class="card-body">
+				<h5 class="card-title">
+					<strong>{{topSuppliers.[2].supplier_name}}</strong>
+				</h5>
+				<p class="card-text">{{topSuppliers.[2].supplier_address}}</p>
+				<div class="row">
+					<div class="col-6">
+						<small class="d-inline-flex px-2 py-1 fw-semibold text-success-emphasis bg-success-subtle border border-success-subtle rounded-2">
+							Sản phẩm đã bán
+						</small>  
+						<p class="pt-2 m-0">{{topSuppliers.[2].total_quantity_sold}}</p>
+					</div>
+					<div class="col-6">
+						<small class="d-inline-flex px-2 py-1 fw-semibold text-success-emphasis bg-success-subtle border border-success-subtle rounded-2">
+							Đơn hàng đã bán
+						</small>  
+						<p class="pt-2 m-0">{{topSuppliers.[2].total_order}}</p>
+					</div>
+				</div>
+			</div>
+			<div class="card-footer bg-success-subtle">
+				Tổng lợi nhuận: {{topSuppliers.[2].total_amount}} VND
+			</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{{!-- Top 3 Best selling Product--}}
+<div class='container mt-1 my-3'>
+    <div class='row d-flex justify-content-center'>
+        <div class='col-12'>
+            <div class='row p-2 border rounded border border-warning-subtle bg-dark-subtle'>
+                <div class='col-3 mt-1 align-content-center'>
+                    <div class='row'>
+                        <div class='col-6 align-items-center align-content-center text-center'>
+							<h6 class="text-warning">Top bán chạy</h6>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='bi' width='48' height='48' fill='currentColor' style="color: #ffc107;" viewBox="0 0 576 512">
+								<path d="M400 0H176c-26.5 0-48.1 21.8-47.1 48.2c.2 5.3 .4 10.6 .7 15.8H24C10.7 64 0 74.7 0 88c0 92.6 33.5 157 78.5 200.7c44.3 43.1 98.3 64.8 138.1 75.8c23.4 6.5 39.4 26 39.4 45.6c0 20.9-17 37.9-37.9 37.9H192c-17.7 0-32 14.3-32 32s14.3 32 32 32H384c17.7 0 32-14.3 32-32s-14.3-32-32-32H357.9C337 448 320 431 320 410.1c0-19.6 15.9-39.2 39.4-45.6c39.9-11 93.9-32.7 138.2-75.8C542.5 245 576 180.6 576 88c0-13.3-10.7-24-24-24H446.4c.3-5.2 .5-10.4 .7-15.8C448.1 21.8 426.5 0 400 0zM48.9 112h84.4c9.1 90.1 29.2 150.3 51.9 190.6c-24.9-11-50.8-26.5-73.2-48.3c-32-31.1-58-76-63-142.3zM464.1 254.3c-22.4 21.8-48.3 37.3-73.2 48.3c22.7-40.3 42.8-100.5 51.9-190.6h84.4c-5.1 66.3-31.1 111.2-63 142.3z"/>
+							</svg>
+							<div class='text-warning mt-2'>ID#{{topProducts.[0].product_id}}</div>
+                            <p class='text-warning'><strong>{{topProducts.[0].total_quantity_sold}} sản phẩm</small></strong></p>
+                        </div>
+                        <div class='col-6 border-start'>
+                            <img
+                                class='img-fluid img-responsive'
+                                src='{{topProducts.[0].product_image}}'
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class='col-4 align-content-center mt-1 border-end'>
+                    <h5>{{topProducts.[0].product_name}}</h5>
+                    <div class='d-flex flex-row align-items-center'>
+                        <h5 class='text-danger me-2'><b>{{topProducts.[0].product_price}}₫</b></h5>
+						<small class="d-inline-flex mb-3 px-2 py-1 me-2 fw-semibold text-danger-emphasis bg-danger-subtle rounded-2">-{{topProducts.[0].product_discount}}%</small>  
+                    	{{!-- <div class='text-secondary'><small><s>Giá gốc: 33.990.000₫</s></small></div> --}}
+					</div>
+                    <div class='text-secondary'><small>Loại sản phẩm: {{topProducts.[0].product_catalog}}</small></div> 
+                    <div class='text-secondary'><small>Tổng doanh thu: {{topProducts.[0].product_amount}}đ</small></div>
+                </div>
+				<div class="col-5">
+					<div class="d-flex flex-row align-items-center">
+						<div class="p-1 me-2">
+							<small class="d-inline-flex px-2 py-1 fw-semibold text-warning-emphasis bg-warning-subtle rounded-2">Top 2</small>  
+						</div>
+						<div class="p-1 text-center border-start">
+							<div class='text-warning mt-2'>ID#{{topProducts.[1].product_id}}</div>
+							<p class='text-warning'><strong>{{topProducts.[1].total_quantity_sold}} sản phẩm</small></strong></p>
+						</div>
+						<div class="p-1">
+							<img
+								class='img-fluid img-responsive' style="max-width: 50px"
+								src='{{topProducts.[1].product_image}}'
+							/>
+						</div>
+						<div class="p-1">
+							<strong>{{topProducts.[1].product_name}}</strong>
+							<div class='d-flex flex-row align-items-center'>
+								<h6 class='text-danger me-2'><b>{{topProducts.[1].product_price}}₫</b></h6>
+								<small class="d-inline-flex mb-2 px-2 py-1 me-2 fw-semibold text-danger-emphasis bg-danger-subtle rounded-2">-{{topProducts.[1].product_discount}}%</small>  
+                    		</div>
+						</div>
+					</div>
+					<hr>
+					<div class="d-flex flex-row align-items-center">
+						<div class="p-1 me-2">
+							<small class="d-inline-flex px-2 py-1 fw-semibold text-warning-emphasis bg-warning-subtle rounded-2">Top 3</small>  
+						</div>
+						<div class="p-1 text-center border-start">
+							<div class='text-warning mt-2'>ID#{{topProducts.[2].product_id}}</div>
+							<p class='text-warning'><strong>{{topProducts.[2].total_quantity_sold}} sản phẩm</small></strong></p>
+						</div>
+						<div class="p-1">
+							<img
+								class='img-fluid img-responsive' style="max-width: 50px"
+								src='{{topProducts.[2].product_image}}'
+							/>
+						</div>
+						<div class="p-1">
+							<strong>{{topProducts.[2].product_name}}</strong>
+							<div class='d-flex flex-row align-items-center'>
+								<h6 class='text-danger me-2'><b>{{topProducts.[2].product_price}}₫</b></h6>
+								<small class="d-inline-flex mb-2 px-2 py-1 me-2 fw-semibold text-danger-emphasis bg-danger-subtle rounded-2">-{{topProducts.[1].product_discount}}%</small>  
+                    		</div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+{{!-- Top customers --}}
+<div class='container mt-1 my-3'>
+    <div class='row d-flex justify-content-center'>
+        <div class='col-12'>
+            <div class='row p-2 border rounded border border-warning-subtle bg-dark-subtle'> 
+				<h5>
+					<strong>Tri ân khách hàng</strong>
+					<!-- Button trigger modal 1-->
+					<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#ModalQuery1">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+						<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+						<path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+					</svg>
+					</button>
+				</h5>
+				<form method='POST' action='/statistic'>
+					<div class="d-flex flex-row mb-3">
+						<div class="p-2">
+							<div class="input-group input-group-sm mb-3">
+								<span class="input-group-text">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-week-fill" viewBox="0 0 16 16">
+										<path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2M9.5 7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5m3 0h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5M2 10.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3.5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5"/>
+									</svg>
+								</span>
+								<input 
+									type="date" 
+									class="form-control" 
+									name="begin_date"
+									value='{{daysAgo 30 'YYYY-MM-DD'}}'
+								>
+								<span class="input-group-text">-</span>
+								<input 
+									type="date" 
+									class="form-control" 
+									name="end_date" 
+									value="{{daysAgo -1 'YYYY-MM-DD'}}"
+								>
+							</div>
+						</div>
+						<div class="p-2">
+							<div class="input-group input-group-sm mb-3">
+								<span class="input-group-text" id="basic-addon1">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+										<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+									</svg>
+								</span>
+								<input type="number" class="form-control" style="max-width:70px" name="number" value="5">
+							</div>
+						</div>
+						<div class="p-2">
+							<button type='submit' class='btn btn-primary btn-sm'>
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+									<path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41m-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9"/>
+									<path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5 5 0 0 0 8 3M3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9z"/>
+								</svg>
+							</button>
+						</div>
+					</div>
+				</form>
+				{{#if topCustomers}}
+				<table class='table table-hover text-center  align-middle'>
+					<thead class="text-center text-uppercase">
+						<tr>
+								<th>Thứ hạng</th>
+								<th>ID</th>
+								<th>Khách hàng</th>
+								<th>Email</th>
+								<th>Điện thoại</th>
+								<th>Tổng tiền</th>
+						</tr>
+					</thead>
+
+					<tbody class="table-group-divider">
+							<tr>
+								<td class="d-flex align-items-center justify-content-center">
+									<svg xmlns='http://www.w3.org/2000/svg' class='bi me-1 mb-1' width='16' height='16' fill='currentColor' style="color: #ffc107;" viewBox="0 0 576 512">
+										<path d="M400 0H176c-26.5 0-48.1 21.8-47.1 48.2c.2 5.3 .4 10.6 .7 15.8H24C10.7 64 0 74.7 0 88c0 92.6 33.5 157 78.5 200.7c44.3 43.1 98.3 64.8 138.1 75.8c23.4 6.5 39.4 26 39.4 45.6c0 20.9-17 37.9-37.9 37.9H192c-17.7 0-32 14.3-32 32s14.3 32 32 32H384c17.7 0 32-14.3 32-32s-14.3-32-32-32H357.9C337 448 320 431 320 410.1c0-19.6 15.9-39.2 39.4-45.6c39.9-11 93.9-32.7 138.2-75.8C542.5 245 576 180.6 576 88c0-13.3-10.7-24-24-24H446.4c.3-5.2 .5-10.4 .7-15.8C448.1 21.8 426.5 0 400 0zM48.9 112h84.4c9.1 90.1 29.2 150.3 51.9 190.6c-24.9-11-50.8-26.5-73.2-48.3c-32-31.1-58-76-63-142.3zM464.1 254.3c-22.4 21.8-48.3 37.3-73.2 48.3c22.7-40.3 42.8-100.5 51.9-190.6h84.4c-5.1 66.3-31.1 111.2-63 142.3z"/>
+									</svg>
+									<strong class="text text-warning">{{topCustomers.[0].rank_by_spend}}</strong>
+								</td>
+								<td>{{topCustomers.[0].customer_id}}</td>
+								<td>{{topCustomers.[0].customer_name}}</td>
+								<td>{{topCustomers.[0].customer_email}}</td>
+								<td>{{topCustomers.[0].customer_phone}}</td>
+								<td>{{topCustomers.[0].total_spend}}</td>
+							</tr>
+							<tr>
+								<td class="d-flex align-items-center justify-content-center">
+									<svg xmlns='http://www.w3.org/2000/svg' class='bi me-1 mb-1' width='16' height='16' fill='currentColor' style="color: #C0C0C0" viewBox="0 0 576 512">
+										<path d="M400 0H176c-26.5 0-48.1 21.8-47.1 48.2c.2 5.3 .4 10.6 .7 15.8H24C10.7 64 0 74.7 0 88c0 92.6 33.5 157 78.5 200.7c44.3 43.1 98.3 64.8 138.1 75.8c23.4 6.5 39.4 26 39.4 45.6c0 20.9-17 37.9-37.9 37.9H192c-17.7 0-32 14.3-32 32s14.3 32 32 32H384c17.7 0 32-14.3 32-32s-14.3-32-32-32H357.9C337 448 320 431 320 410.1c0-19.6 15.9-39.2 39.4-45.6c39.9-11 93.9-32.7 138.2-75.8C542.5 245 576 180.6 576 88c0-13.3-10.7-24-24-24H446.4c.3-5.2 .5-10.4 .7-15.8C448.1 21.8 426.5 0 400 0zM48.9 112h84.4c9.1 90.1 29.2 150.3 51.9 190.6c-24.9-11-50.8-26.5-73.2-48.3c-32-31.1-58-76-63-142.3zM464.1 254.3c-22.4 21.8-48.3 37.3-73.2 48.3c22.7-40.3 42.8-100.5 51.9-190.6h84.4c-5.1 66.3-31.1 111.2-63 142.3z"/>
+									</svg>
+									<strong class="text" style="color: #C0C0C0;">{{topCustomers.[1].rank_by_spend}}</strong>
+								</td>
+								<td>{{topCustomers.[1].customer_id}}</td>
+								<td>{{topCustomers.[1].customer_name}}</td>
+								<td>{{topCustomers.[1].customer_email}}</td>
+								<td>{{topCustomers.[1].customer_phone}}</td>
+								<td>{{topCustomers.[1].total_spend}}</td>
+							</tr>
+							<tr>
+								<td class="d-flex align-items-center justify-content-center">
+									<svg xmlns='http://www.w3.org/2000/svg' class='bi me-1 mb-1' width='16' height='16' fill='currentColor' style="color: #964B00;" viewBox="0 0 576 512">
+										<path d="M400 0H176c-26.5 0-48.1 21.8-47.1 48.2c.2 5.3 .4 10.6 .7 15.8H24C10.7 64 0 74.7 0 88c0 92.6 33.5 157 78.5 200.7c44.3 43.1 98.3 64.8 138.1 75.8c23.4 6.5 39.4 26 39.4 45.6c0 20.9-17 37.9-37.9 37.9H192c-17.7 0-32 14.3-32 32s14.3 32 32 32H384c17.7 0 32-14.3 32-32s-14.3-32-32-32H357.9C337 448 320 431 320 410.1c0-19.6 15.9-39.2 39.4-45.6c39.9-11 93.9-32.7 138.2-75.8C542.5 245 576 180.6 576 88c0-13.3-10.7-24-24-24H446.4c.3-5.2 .5-10.4 .7-15.8C448.1 21.8 426.5 0 400 0zM48.9 112h84.4c9.1 90.1 29.2 150.3 51.9 190.6c-24.9-11-50.8-26.5-73.2-48.3c-32-31.1-58-76-63-142.3zM464.1 254.3c-22.4 21.8-48.3 37.3-73.2 48.3c22.7-40.3 42.8-100.5 51.9-190.6h84.4c-5.1 66.3-31.1 111.2-63 142.3z"/>
+									</svg>
+									<strong class="text" style="color: #964B00;">{{topCustomers.[2].rank_by_spend}}</strong>
+								</td>
+								<td>{{topCustomers.[2].customer_id}}</td>
+								<td>{{topCustomers.[2].customer_name}}</td>
+								<td>{{topCustomers.[2].customer_email}}</td>
+								<td>{{topCustomers.[2].customer_phone}}</td>
+								<td>{{topCustomers.[2].total_spend}}</td>
+							</tr>
+							{{#eachFromIndex topCustomers 3}}
+							<tr>
+								<td><strong>{{this.rank_by_spend}}</strong></td>
+								<td>{{this.customer_id}}</td>
+								<td>{{this.customer_name}}</td>
+								<td>{{this.customer_email}}</td>
+								<td>{{this.customer_phone}}</td>
+								<td>{{this.total_spend}}</td>
+							</tr>
+							{{/eachFromIndex}}
+					</tbody>   
+            	</table>
+				{{/if}}
+            </div>
+        </div>
+    </div>
+</div>
+{{!-- Store statistic --}}
+<div class='container mt-1 my-3'>
+    <div class='row d-flex justify-content-center'>
+        <div class='col-12'>
+            <div class='row p-2 border rounded border border-warning-subtle bg-dark-subtle'> 
+				<h5>
+					<strong>Thống kê thu nhập</strong>
+					<!-- Button trigger modal 2-->
+					<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#ModalQuery2">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+						<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+						<path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+					</svg>
+					</button>
+				</h5>
+				<form method='POST' action='/statistic'>
+					<div class="d-flex flex-row mb-3">
+						<div class="p-2">
+							<div class="input-group input-group-sm mb-3">
+								<span class="input-group-text">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-week-fill" viewBox="0 0 16 16">
+										<path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2M9.5 7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5m3 0h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5M2 10.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3.5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5"/>
+									</svg>
+								</span>
+								<input 
+									type="date" 
+									class="form-control" 
+									name="store_begin_date"
+									value='{{daysAgo 365 'YYYY-MM-DD'}}'
+								>
+								<span class="input-group-text">-</span>
+								<input 
+									type="date" 
+									class="form-control" 
+									name="store_end_date" 
+									value="{{daysAgo -1 'YYYY-MM-DD'}}"
+								>
+							</div>
+						</div>
+						<div class="p-2">
+							<button type='submit' class='btn btn-primary btn-sm'>
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+									<path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41m-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9"/>
+									<path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5 5 0 0 0 8 3M3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9z"/>
+								</svg>
+							</button>
+						</div>
+					</div>
+				</form>
+				{{#if storeStatistic}}
+				<table class='table table-hover text-center align-middle'>
+					<thead class="text-center text-uppercase">
+						<tr>
+								<th>Tháng</th>
+								<th>Quý</th>
+								<th>Năm</th>
+								<th>Total cost</th>
+								<th>Total revenue</th>
+								<th>Total profit</th>
+						</tr>
+					</thead>
+
+					<tbody class="table-group-divider">
+						{{#each storeStatistic}}
+						<tr>
+							{{#each this}}
+								<td>{{this}}</td>
+							{{/each}}
+						</tr>
+						{{/each}}
+					</tbody>   
+            	</table>
+				{{/if}}
+            </div>
+        </div>
+    </div>
+</div>
+{{!-- Search supplier's base_price and revenue --}}
+<div class='container mt-1 my-3'>
+    <div class='row d-flex justify-content-center'>
+        <div class='col-12'>
+            <div class='row p-2 border rounded border border-warning-subtle bg-dark-subtle'> 
+				<h5><strong>Nhà sản xuất</strong></h5>
+				<div class="row">
+					<div class="col-6">
+						<h6>
+							<strong>Tổng tiền nhập hàng từ nhà sản xuất:</strong>
+							<!-- Button trigger modal 3-->
+							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#ModalQuery3">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+								<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+								<path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+							</svg>
+							</button>
+						</h6>
+						<form method='POST' action='/basepricesupplier'>  
+							<div class='input-group' style='max-width: 250px'>
+								<input name='importsupplier' class='form-control border-primary' list="supplierOptions" id="supplier-input" placeholder="Nhà sản xuất">
+								<datalist id="supplierOptions"></datalist>
+								<button class='btn btn-outline-primary' type='submit'>
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+										<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+									</svg>
+								</button>
+							</div>
+						</form>
+						<div class='mt-4'>
+							<table class='table table-hover text-center align-middle'>
+								<thead class="text-center">
+									<tr>
+										{{#each basepricesupplier.[0]}}
+											<th>{{@key}}</th>
+										{{/each}}
+									</tr>
+								</thead>
+
+								<tbody class="table-group-divider">
+									{{#each basepricesupplier}}
+										<tr>
+											{{#each this}}
+												<td>{{this}}</td>
+											{{/each}}
+										</tr>
+									{{/each}}
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="col-6 border-start">
+						<h6>
+							<strong>Tổng doanh thu từ nhà sản xuất:</strong>
+							<!-- Button trigger modal 4-->
+							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#ModalQuery4">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+								<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+								<path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+							</svg>
+							</button>
+						</h6>
+						<form method='POST' action='/revenuesupplier'>  
+							<div class='input-group' style='max-width: 250px'>
+								<input name='supplier' class='form-control border-primary' list="supplierOptions" id="supplier-input" placeholder="Nhà sản xuất">
+								<datalist id="supplierOptions"></datalist>
+								<button class='btn btn-outline-primary' type='submit'>
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+										<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+									</svg>
+								</button>
+							</div>
+						</form>
+						<div class='mt-4'>
+							<table class='table table-hover text-center align-middle'>
+								<thead class="text-center">
+									<tr>
+										{{#each revenuesupplier.[0]}}
+											<th>{{@key}}</th>
+										{{/each}}
+									</tr>
+								</thead>
+
+								<tbody class="table-group-divider">
+									{{#each revenuesupplier}}
+										<tr>
+											{{#each this}}
+												<td>{{this}}</td>
+											{{/each}}
+										</tr>
+									{{/each}}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+				
+            </div>
+        </div>
+    </div>
+</div>
+{{!-- Search product's revenue --}}
+<div class='container mt-1 my-3'>
+    <div class='row d-flex justify-content-center'>
+        <div class='col-12'>
+            <div class='row p-2 border rounded border border-warning-subtle bg-dark-subtle'> 
+				<h5>
+					<strong>Sản phẩm</strong>
+					<!-- Button trigger modal 5-->
+					<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#ModalQuery5">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+						<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+						<path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+					</svg>
+					</button>
+				</h5>
+				<form method='POST' action='/revenueproduct'>  
+					<div class='input-group' style='max-width: 350px'>
+					<input
+						type='text'
+						name='product'
+						class='form-control border-primary'
+						placeholder="Tên sản phẩm"
+					/>
+					<button class='btn btn-outline-primary' type='submit'>
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+							<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+						</svg>
+					</button>
+					</div>
+				</form>
+				<div class='mt-4'>
+					<table class='table table-hover text-center align-middle'>
+						<thead class="text-center">
+							<tr>
+								{{#each revenueproduct.[0]}}
+									<th>{{@key}}</th>
+								{{/each}}
+							</tr>
+						</thead>
+
+						<tbody class="table-group-divider">
+							{{#each revenueproduct}}
+								<tr>
+									{{#each this}}
+										<td>{{this}}</td>
+									{{/each}}
+								</tr>
+							{{/each}}
+						</tbody>
+					</table>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Lấy danh sách nhà sản xuất
+        fetch('/getsupplier')
+        .then(response => response.json())
+        .then(data => {
+            const supplierDatalist = document.getElementById('supplierOptions');
+            supplierDatalist.innerHTML = ''; 
+            data.forEach(supplier => {
+                const option = document.createElement('option');
+                option.value = supplier.name;
+                supplierDatalist.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Lỗi khi lấy danh sách nhà sản xuất:', error));
+	});
+</script>
+
+<!-- Modal 1-->
+<div class="modal fade modal-xl" id="ModalQuery1" tabindex="-1" aria-labelledby="ModalQuery1Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="ModalQuery1Label">Top customers</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="postgresql" style="font-size: 18px;">
+SELECT rank_by_spend,customer_id,customer_name,customer_email,customer_phone,total_spend::money::numeric::float8
+FROM get_top_customers($1, $2, $3);
+-- FUNCTION --
+CREATE FUNCTION get_top_customers(
+    start_date DATE,
+    end_date DATE,
+    top_n INT DEFAULT 10
+)
+RETURNS TABLE (
+    rank_by_spend BIGINT,
+    customer_id INT,
+    customer_name VARCHAR,
+    customer_email VARCHAR(255),
+    customer_phone VARCHAR(255),
+    total_spend MONEY
+)
+AS $$
+BEGIN
+    RETURN QUERY
+    WITH customer_spend AS (
+        SELECT
+            o.customer_id,
+            SUM(o.amount) AS total_spend
+        FROM orders o
+        WHERE o.created_at BETWEEN start_date AND end_date AND o.status_payment = 1
+        GROUP BY o.customer_id
+    ),
+    ranked_customers AS (
+        SELECT
+            cs.customer_id,
+            cs.total_spend,
+            RANK() OVER (ORDER BY cs.total_spend DESC) AS rank_by_spend
+        FROM customer_spend cs
+    )
+    SELECT
+        rc.rank_by_spend,
+        rc.customer_id,
+        c.name AS customer_name,
+        c.email AS customer_email,
+        c.phone AS customer_phone,
+        rc.total_spend
+    FROM ranked_customers rc
+    INNER JOIN customers c ON c.id = rc.customer_id
+    WHERE rc.rank_by_spend <= top_n
+    ORDER BY rc.rank_by_spend ASC;
+END;
+$$ LANGUAGE plpgsql;
+
+        </code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 2-->
+<div class="modal fade modal-xl" id="ModalQuery2" tabindex="-1" aria-labelledby="ModalQuery2Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="ModalQuery2Label">Store revenue</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="postgresql" style="font-size: 18px;">
+SELECT month,quarter,year, total_cost::money::numeric::float8, total_revenue::money::numeric::float8, total_profit::money::numeric::float8
+FROM get_store_revenue($1, $2);
+-- FUNCTION --
+CREATE OR REPLACE FUNCTION get_store_revenue(start_date DATE,end_date DATE)
+RETURNS TABLE (
+    month INT,
+    quarter INT,
+    year INT,
+    total_cost MONEY,
+    total_revenue MONEY,
+    total_profit MONEY
+)
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT
+        EXTRACT(MONTH FROM o.created_at):: INT AS month,
+        EXTRACT(QUARTER FROM o.created_at):: INT AS quarter,
+        EXTRACT(YEAR FROM o.created_at):: INT AS year,
+        SUM(o.quantity * p.base_price) AS total_cost,
+        SUM(o.amount) AS total_revenue,
+        SUM(o.amount - o.quantity*p.base_price) AS total_profit
+    FROM orders o
+        INNER JOIN products p ON o.product_id = p.id
+    WHERE
+        o.created_at BETWEEN start_date AND end_date AND o.status_payment = 1
+    GROUP BY
+        month,
+        quarter,
+        year
+    ORDER BY
+        year, quarter, month ASC;
+END;
+$$ LANGUAGE plpgsql;
+
+        </code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 3-->
+<div class="modal fade modal-xl" id="ModalQuery3" tabindex="-1" aria-labelledby="ModalQuery3Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="ModalQuery3Label">Total base_price by supplier</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="postgresql" style="font-size: 18px;">
+SELECT name,total_base_price::money::numeric::float8
+FROM get_total_base_price_by_supplier($1);
+-- FUNCTION --
+CREATE OR REPLACE FUNCTION get_total_base_price_by_supplier(supplier_name VARCHAR(255))
+RETURNS TABLE(name VARCHAR(255), total_base_price MONEY)
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT s.name, SUM(p.base_price * o.quantity) AS total_base_price
+    FROM orders o
+    INNER JOIN products p ON o.product_id = p.id
+    INNER JOIN suppliers s ON p.supplier_id = s.id
+    WHERE s.name = get_total_base_price_by_supplier.supplier_name
+          AND o.status_payment = 1
+    GROUP BY s.name;
+END;
+$$ LANGUAGE plpgsql;
+
+        </code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 4-->
+<div class="modal fade modal-xl" id="ModalQuery4" tabindex="-1" aria-labelledby="ModalQuery4Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="ModalQuery4Label">Revenue by supplier</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="postgresql" style="font-size: 18px;">
+SELECT supplier_name AS name ,total_revenue::money::numeric::float8
+FROM get_revenue_supplier($1);
+-- FUNCTION --
+CREATE OR REPLACE FUNCTION get_revenue_supplier(name_supplier VARCHAR(255))
+RETURNS TABLE(supplier_name VARCHAR(255),total_revenue MONEY)
+AS $$
+BEGIN
+	RETURN QUERY
+	SELECT 
+		s.name AS supplier_name,
+		SUM(o.amount) AS total_revenue
+	FROM products p
+	INNER JOIN orders o ON o.product_id = p.id
+	INNER JOIN suppliers s ON s.id = p.supplier_id
+	WHERE name_supplier = s.name
+	GROUP BY s.name;
+END;
+$$ LANGUAGE plpgsql;
+
+        </code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 5-->
+<div class="modal fade modal-xl" id="ModalQuery5" tabindex="-1" aria-labelledby="ModalQuery5Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="ModalQuery5Label">Product profit</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="postgresql" style="font-size: 18px;">
+SELECT get_product_profit::money::numeric::float8 
+FROM get_product_profit($1);
+-- FUNCTION --
+CREATE OR REPLACE FUNCTION get_product_profit(product_name VARCHAR(255))
+RETURNS MONEY
+AS $$
+  DECLARE total_revenue MONEY;
+  DECLARE total_cost MONEY;
+  DECLARE profit MONEY;
+BEGIN
+  SELECT SUM(o.quantity * p.base_price) INTO total_cost
+  FROM orders o
+  INNER JOIN products p ON o.product_id = p.id
+  WHERE p.name = product_name AND o.status_payment = 1;
+  
+  SELECT SUM(o.amount) INTO total_revenue
+  FROM orders o
+  INNER JOIN products p ON o.product_id = p.id
+  WHERE p.name = product_name;
+  profit := total_revenue - total_cost;
+  RETURN profit;
+END;
+$$ LANGUAGE plpgsql;
+        </code></pre>
+      </div>
+    </div>
+  </div>
+</div>

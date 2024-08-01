@@ -1,0 +1,489 @@
+<div class="accordion" id="order">
+    {{!-- Search Order --}}
+    
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseZero" aria-expanded="true" aria-controls="collapseZero">
+            <strong>Search order</strong>
+            </button>
+        </h2>
+        <div id="collapseZero" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                {{!-- Input --}}
+                <form method='POST' action='/searchorder'>
+                    <div class="row">
+                        <div class='col-9'>
+                            <div class="row">
+                                <div class='col-2 mb-3'>
+                                    <label for='search_id-input' class='form-label'>ID đơn hàng:</label>
+                                    <input
+                                        type='text'
+                                        name='search_id'
+                                        class='form-control'
+                                        id='search_id-input'
+                                        placeholder='123'
+                                    />
+                                </div>
+                                <div class='col-2 mb-3'>
+                                    <label for='search_customer_id-input' class='form-label'>ID khách hàng:</label>
+                                    <input
+                                        type='text'
+                                        name='search_customer_id'
+                                        class='form-control'
+                                        id='search_customer_id-input'
+                                        placeholder='123'
+                                    />
+                                </div>
+                                <div class='col-2 mb-3'>
+                                    <label for='search_product_id-input' class='form-label'>ID sản phẩm:</label>
+                                    <input
+                                        type='text'
+                                        name='search_product_id'
+                                        class='form-control'
+                                        id='search_product_id-input'
+                                        placeholder='123'
+                                    />
+                                </div>
+                                <div class='col-2 mb-3'>
+                                    <label for='search_quantity-input' class='form-label'>Số lượng:</label>
+                                    <input
+                                        type='number'
+                                        name='search_quantity'
+                                        class='form-control'
+                                        id='search_quantity-input'
+                                        placeholder='1'
+                                    />
+                                </div>
+                                <div class='col-4 mb-3'>
+                                    <label for='search_amount-input' class='form-label'>Giá đơn hàng:</label>
+                                    <div class="input-group flex-nowrap">   
+                                        <input
+                                            type='number'
+                                            name='search_amount'
+                                            class='form-control'
+                                            id='search_amount-input'
+                                            placeholder='23000000'
+                                        />
+                                        <span class="input-group-text" id="addon-wrapping">đ</span>
+                                    </div>
+                                </div>
+                                <div class='col-4 mb-3'>
+                                    <label for='paymentSelect' class='form-label'>Thanh toán:</label>
+                                    <select id="paymentSelect" name="search_status_payment" class="form-select">
+                                        <option selected>Chọn trạng thái</option>
+                                        <option value="0">Chưa thanh toán</option>
+                                        <option value="1">Đã thanh toán</option>
+                                        <option value="2">Huỷ thanh toán</option>
+                                    </select>
+                                </div>
+                                <div class='col-4 mb-3'>
+                                    <label for='shipmentSelect' class='form-label'>Vận chuyển:</label>
+                                    <select id="shipmentSelect" name="search_status_shipment" class="form-select">
+                                        <option selected>Chọn trạng thái</option>
+                                        <option value="0">Đang xử lý</option> 
+                                        <option value="1">Đang giao hàng</option>
+                                        <option value="2">Đã giao hàng</option>
+                                        <option value="3">Huỷ giao hàng</option>
+                                    </select>
+                                </div>
+                                <div class='col-4 mb-3'>
+                                    <label for='search_created_at-input' class='form-label'>Ngày tạo:</label>
+                                    <input
+                                        type='date'
+                                        name='search_created_at'
+                                        class='form-control'
+                                        id='search_created_at-input'
+                                    />
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button type='submit' class='btn btn-primary'>Tìm kiếm</button>
+                                <!-- Button trigger modal 1-->
+                                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#ModalQuery1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+                                </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class='col-3'>
+                            <div class="card border-warning mb-3" style="max-width: 18rem;">
+                                <h6 class="card-header text-warning">Chú ý</h6>
+                                <div class="card-body text-warning">
+                                    <div class="card-text">
+                                        <p class="card-text"><strong>Chỉnh sửa</strong> địa chỉ giao hàng ở bảng dưới</p>
+                                        <p class="card-text"><strong>Đây là tìm kiếm chính xác</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                {{!-- Table --}}
+                {{#if resultSearch}}
+                    <small>
+                    <table class='table table-hover text-center align-middle'>
+                        <thead class="text-center text-uppercase">
+                            <tr>
+                                {{#each resultSearch.[0]}}
+                                    <th>{{@key}}</th>
+                                {{/each}}
+                                    <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="table-group-divider">
+                            {{#each resultSearch}}
+                                <tr>
+                                    <td>{{this.id}}</td>
+                                    <td>{{this.customer_id}}</td>
+                                    <td>{{this.product_id}}</td>
+                                    <td>{{this.address}}</td>
+                                    <td>{{this.quantity}}</td>
+                                    <td>{{this.amount}}</td>
+                                    <td>
+                                        {{#eq this.status_payment 0}}
+                                            <span class='badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill'>
+                                                Chưa thanh toán
+                                            </span>
+                                        {{else}}
+                                            {{#eq this.status_payment 1}}
+                                                <span class='badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill'>
+                                                    Đã thanh toán
+                                                </span>
+                                            {{else}}
+                                                <span class='badge bg-danger-subtle border border-danger-subtle text-danger-emphasis rounded-pill'>
+                                                    Huỷ thanh toán
+                                                </span>
+                                            {{/eq}}
+                                        {{/eq}}
+                                    </td>
+                                    <td>
+                                        {{#eq this.status_shipment 0}}
+                                            <span
+                                                class='badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill'
+                                            >Đang xử lý</span>
+                                        {{else}}
+                                            {{#eq this.status_shipment 1}}
+                                                <span
+                                                    class='badge bg-info-subtle border border-info-subtle text-info-emphasis rounded-pill'
+                                                >Đang giao hàng</span>
+                                            {{else}}
+                                                {{#eq this.status_shipment 2}}
+                                                    <span
+                                                        class='badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill'
+                                                    >Đã giao hàng</span>
+                                                {{else}}
+                                                    <span
+                                                        class='badge bg-danger-subtle border border-danger-subtle text-danger-emphasis rounded-pill'
+                                                    >Huỷ giao hàng</span>
+                                                {{/eq}}
+                                            {{/eq}}
+                                        {{/eq}}
+                                    </td>
+                                    <td>{{moment this.created_at format='DD/MM/YYYY HH:mm:ss'}}</td>
+                                    <td>
+                                        {{#eq this.status_shipment 0}}<a href="/editorder/{{this.id}}" type="button" class="btn btn-primary btn-sm" disabled>Edit</a>{{/eq}}
+                                    </td>
+                                </tr>
+                            {{/each}}
+                        </tbody>   
+                    </table>
+                    </small>                
+                {{else}}
+                    <p>No results found.</p>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+
+    {{!-- Add order --}}
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <strong>Add order</strong>
+            </button>
+        </h2>
+        {{!-- Input --}}
+        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <div class='mt-4'>
+                    <form class="needs-validation" method='POST' action='/addorder' novalidate>
+                    <div class="row">
+                        <div class='col-9'>
+                            <div class="row">
+                                <div class='col-2 mb-3'>
+                                    <label for='id-input' class='form-label'>ID đơn hàng:</label>
+                                    <input
+                                        type='text'
+                                        name='id'
+                                        class='form-control'
+                                        id='id-input'
+                                        disabled
+                                    />
+                                </div>
+                                <div class='col-4 mb-3'>
+                                    <label for='phone-input' class='form-label'>Số điện thoại khách hàng:</label>
+                                    <input
+                                        type='number'
+                                        name='phone'
+                                        class='form-control'
+                                        id='phone-input'
+                                        placeholder='0987654321'
+                                        required
+                                    />
+                                    <div class="invalid-feedback">
+                                        Hãy nhập số điện thoại khách hàng
+                                    </div>
+                                </div>
+                                <div class='col-3 mb-3'>
+                                    <label for='product_id-input' class='form-label'>ID sản phẩm:</label>
+                                    <input
+                                        type='number'
+                                        name='product_id'
+                                        class='form-control'
+                                        id='product_id-input'
+                                        placeholder='123'
+                                        required
+                                    />
+                                    <div class="invalid-feedback">
+                                        Hãy nhập ID sản phẩm
+                                    </div>
+                                </div>
+                                <div class='col-3 mb-3'>
+                                    <label for='quantity-input' class='form-label'>Số lượng:</label>
+                                    <input
+                                        type='number'
+                                        name='quantity'
+                                        class='form-control'
+                                        id='quantity-input'
+                                        placeholder='1'
+                                        required
+                                    />
+                                    <div class="invalid-feedback">
+                                        Hãy nhập số lượng sản phẩm
+                                    </div>
+                                </div>
+                                <div class='col-4 mb-3'>
+                                    <label for='paymentSelect' class='form-label'>Thanh toán:</label>
+                                    <select id="paymentSelect" name="status_payment" class="form-select">
+                                        <option value="0" selected>Chưa thanh toán</option>
+                                        <option value="1">Đã thanh toán</option>
+                                        <option value="2">Huỷ thanh toán</option>
+                                    </select>
+                                </div>
+                                <div class='col-8 mb-3'>
+                                    <label for='address-input' class='form-label'>Địa chỉ nhận hàng:</label>
+                                    <input
+                                        type='text'
+                                        name='address'
+                                        class='form-control'
+                                        id='address-input'
+                                        placeholder='Bách Khoa, Quận Hai Bà Trưng, Hà Nội'
+                                    />
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button type='submit' class='btn btn-primary'>Thêm đơn hàng</button>
+                                <!-- Button trigger modal 2-->
+                                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#ModalQuery2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+                                </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class='col-3  pt-4'>
+                            <div class="card border-warning mb-3" style="max-width: 18rem;">
+                                <h6 class="card-header text-warning">Chú ý</h6>
+                                <div class="card-body text-warning">
+                                    <div class="card-text">
+                                        Điền đầy đủ thông tin <strong>"Số điện thoại", "ID sản phẩm", "Số lượng", "Trạng thái thanh toán"</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    {{!-- Table of order --}}
+    <div class="accordion-item">
+    <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <strong>Order Info</strong>
+        </button>
+    </h2>
+    {{!-- Table --}}
+    <div id="collapseTwo" class="accordion-collapse show" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+            <div class='table-responsive mt-4'>
+                <table class='table table-hover text-center align-middle'>
+                    <thead class="text-center text-uppercase">
+                        <tr>
+                            {{#each allOrder.[0]}}
+                                <th>{{@key}}</th>
+                            {{/each}}
+                                <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="table-group-divider">
+                        {{#each allOrder}}
+                            <tr>
+                                <td>{{this.id}}</td>
+                                <td>{{this.customer_id}}</td>
+                                <td>{{this.product_id}}</td>
+                                <td>{{this.address}}</td>
+                                <td>{{this.quantity}}</td>
+                                <td>{{this.amount}}</td>
+                                <td>
+                                    {{#eq this.status_payment 0}}
+                                        <span class='badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill'>
+                                            Chưa thanh toán
+                                        </span>
+                                    {{else}}
+                                        {{#eq this.status_payment 1}}
+                                            <span class='badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill'>
+                                                Đã thanh toán
+                                            </span>
+                                        {{else}}
+                                            <span class='badge bg-danger-subtle border border-danger-subtle text-danger-emphasis rounded-pill'>
+                                                Huỷ thanh toán
+                                            </span>
+                                        {{/eq}}
+                                    {{/eq}}
+                                </td>
+                                <td>
+                                    {{#eq this.status_shipment 0}}
+                                        <span
+                                            class='badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill'
+                                        >Đang xử lý</span>
+                                    {{else}}
+                                        {{#eq this.status_shipment 1}}
+                                            <span
+                                                class='badge bg-info-subtle border border-info-subtle text-info-emphasis rounded-pill'
+                                            >Đang giao hàng</span>
+                                        {{else}}
+                                            {{#eq this.status_shipment 2}}
+                                                <span
+                                                    class='badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill'
+                                                >Đã giao hàng</span>
+                                            {{else}}
+                                                <span
+                                                    class='badge bg-danger-subtle border border-danger-subtle text-danger-emphasis rounded-pill'
+                                                >Huỷ giao hàng</span>
+                                            {{/eq}}
+                                        {{/eq}}
+                                    {{/eq}}
+                                </td>
+                                <td>{{moment this.created_at format='DD/MM/YYYY HH:mm:ss'}}</td>
+                                <td>
+                                    {{#eq this.status_shipment 0}}<a href="/editorder/{{this.id}}" type="button" class="btn btn-primary btn-sm" disabled>Edit</a>{{/eq}}
+                                </td>
+                            </tr>
+                        {{/each}}
+                    </tbody>   
+                </table>  
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        'use strict'
+        const forms = document.querySelectorAll('.needs-validation')
+
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })()
+</script>
+
+
+<!-- Modal 1-->
+<div class="modal fade modal-xl" id="ModalQuery1" tabindex="-1" aria-labelledby="ModalQuery1Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="ModalQuery1Label">Search order</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="postgresql" style="font-size: 18px;">
+SELECT o.id, o.customer_id, o.product_id, o.address, o.quantity, o.amount::money::numeric::float8, o.status_payment, o.status_shipment, o.created_at
+FROM orders o JOIN customers c ON o.customer_id = c.id
+WHERE   (COALESCE($1, o.id) = o.id)
+    AND (COALESCE($2, c.phone) = c.phone) 
+    AND (COALESCE($3, o.product_id) = o.product_id) 
+    AND (COALESCE($4, o.quantity) = o.quantity) 
+    AND (COALESCE($5, o.amount) = o.amount) 
+    AND (COALESCE($6, o.status_payment) = o.status_payment) 
+    AND (COALESCE($7, o.status_shipment) = o.status_shipment)
+    AND (COALESCE(DATE($8), DATE(o.created_at)) = DATE(o.created_at))
+ORDER BY o.id DESC
+        </code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 2-->
+<div class="modal fade modal-xl" id="ModalQuery2" tabindex="-1" aria-labelledby="ModalQuery2Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="ModalQuery2Label">Add order</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="postgresql" style="font-size: 18px;">
+SELECT insert_order ($1, $2, $3, $4, $5);
+-- FUCTION --
+CREATE OR REPLACE FUNCTION insert_order(
+    o_phone VARCHAR(255),
+    o_address VARCHAR(255),
+    o_quantity INTEGER,
+    o_product_id INTEGER,
+    o_status_payment SMALLINT
+)
+RETURNS VARCHAR(20)
+AS $$
+DECLARE
+    o_customer_id INTEGER;
+    o_order_id INTEGER;
+BEGIN
+    -- Check if the customer exists
+    SELECT c.id INTO o_customer_id
+    FROM customers c
+    WHERE c.phone = o_phone;
+    IF o_customer_id IS NOT NULL THEN
+        INSERT INTO orders (customer_id, product_id, address, quantity, status_payment,status_shipment)
+        VALUES (o_customer_id, o_product_id, o_address, o_quantity, o_status_payment,0);
+        RETURN 'Success';
+    ELSE
+        RETURN 'Fail';
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+        </code></pre>
+      </div>
+    </div>
+  </div>
+</div>

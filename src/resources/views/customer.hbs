@@ -1,0 +1,315 @@
+<div class="accordion" id="customer">
+    {{!-- Search customer --}}
+    
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseZero" aria-expanded="true" aria-controls="collapseZero">
+            <strong>Search Customer</strong>
+            </button>
+        </h2>
+        <div id="collapseZero" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                {{!-- Input --}}
+                <form method='POST' action='/searchcustomer'>
+                    <div class="row">
+                        <div class='col-9'>
+                            <div class="row">
+                                <div class='col-5 mb-3'>
+                                    <label for='name-input' class='form-label'>Tên:</label>
+                                    <input
+                                        type='text'
+                                        name='search_name'
+                                        class='form-control'
+                                        id='name-input'
+                                        placeholder='Nguyễn Văn A'
+                                    />
+                                </div>
+                                <div class='col-3 mb-3'>
+                                    <label for='age-input' class='form-label'>Tuổi:</label>
+                                    <input
+                                        type='number'
+                                        name='search_age'
+                                        class='form-control'
+                                        id='age-input'
+                                        placeholder='18'
+                                    />
+                                </div>
+                               <div class='col-4 mb-3'>
+                                    <label for='genderSelect' class='form-label'>Giới tính:</label>
+                                    <select id="genderSelect" name="search_gender" class="form-select">
+                                        <option value='' selected>Giới tính</option>
+                                        <option value="Nam">Nam</option>
+                                        <option value="Nữ">Nữ</option>
+                                        <option value="Khác">Khác</option>
+                                    </select>
+                                </div>
+                                <div class='col-5 mb-3'>
+                                    <label for='email-input' class='form-label'>Email:</label>
+                                    <input
+                                        type='text'
+                                        name='search_email'
+                                        class='form-control'
+                                        id='email-input'
+                                        placeholder='customer@example.com'
+                                    />
+                                </div>
+                                <div class='col-3 mb-3'>
+                                    <label for='phone-input' class='form-label'>Số điện thoại:</label>
+                                    <input
+                                        type='number'
+                                        name='search_phone'
+                                        class='form-control'
+                                        id='phone-input'
+                                        placeholder='0123456789'
+                                    />
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button type='submit' class='btn btn-primary'>Tìm kiếm</button>
+                                <!-- Button trigger modal 1-->
+                                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#ModalQuery1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+                                </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class='col-3  pt-4'>
+                            <div class="card border-warning mb-3" style="max-width: 18rem;">
+                                <h6 class="card-header text-warning"><strong>Chú ý</strong></h6>
+                                <div class="card-body text-warning">
+                                    <p class="card-text"><strong>Chỉnh sửa</strong> và <strong>Xoá</strong> thông tin khách hàng ở bảng dưới</p>
+                                    <p class="card-text"><strong>Đây là tìm kiếm chính xác</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                {{!-- Table --}}
+                {{#if resultSearch}}
+                    <small>
+                    <table class='table table-hover text-center align-middle'>
+                        <thead class="text-center text-uppercase">
+                            <tr>
+                                {{#each resultSearch.[0]}}
+                                    <th>{{@key}}</th>
+                                {{/each}}
+                                    <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                            {{#each resultSearch}}
+                                <tr>
+                                    <td>{{this.id}}</td>
+                                    <td>{{this.name}}</td>
+                                    <td>{{this.age}}</td>
+                                    <td>{{this.gender}}</td>
+                                    <td>{{this.email}}</td>
+                                    <td>{{this.phone}}</td>
+                                    <td>{{moment this.created_at format='DD/MM/YYYY HH:mm:ss'}}</td>
+                                    <td>{{moment this.updated_at format='DD/MM/YYYY HH:mm:ss'}}</td>
+
+                                    <td>
+                                        <div class="d-grid gap-2">
+                                            <a href="/editcustomer/{{this.id}}" type="button" class="btn btn-primary btn-sm">Edit</a> 
+                                            <a href="/deletecustomer/{{this.id}}" type="button" class="btn btn-danger btn-sm">Delete</a> 
+                                        </div>
+                                    </td>
+                                </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </small>                
+                {{else}}
+                    <p>No results found.</p>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+
+    {{!-- Add customer --}}
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <strong>Add Customer</strong>
+            </button>
+        </h2>
+        {{!-- Input --}}
+        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <div class='mt-4'>
+                    <form class="needs-validation" method="POST" action="/addcustomer" novalidate>
+                        <div class="row">
+                            <div class="col-9">
+                                <div class="row">
+                                    <div class="col-5 mb-3">
+                                        <label for="name-input" class="form-label">Tên:</label>
+                                        <input type="text" name="name" class="form-control" id="name-input" placeholder="Nguyễn Văn A" required />
+                                        <div class="invalid-feedback">
+                                            Vui lòng nhập tên
+                                        </div>
+                                    </div>
+                                    <div class="col-3 mb-3">
+                                        <label for="age-input" class="form-label">Tuổi:</label>
+                                        <input type="number" name="age" class="form-control" id="age-input" placeholder="18"/>
+                                    </div>
+                                    <div class="col-4 mb-3">
+                                        <label for="genderSelect" class="form-label">Giới tính:</label>
+                                        <select id="genderSelect" name="gender" class="form-select">
+                                            <option selected value="">Giới tính</option>
+                                            <option value="Nam">Nam</option>
+                                            <option value="Nữ">Nữ</option>
+                                            <option value="Khác">Khác</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-5 mb-3">
+                                        <label for="email-input" class="form-label">Email:</label>
+                                        <input type="email" name="email" class="form-control" id="email-input" placeholder="customer@example.com" required />
+                                        <div class="invalid-feedback">
+                                            Vui lòng nhập email hợp lệ
+                                        </div>
+                                    </div>
+                                    <div class="col-3 mb-3">
+                                        <label for="phone-input" class="form-label">Số điện thoại:</label>
+                                        <input type="number" name="phone" class="form-control" id="phone-input" placeholder="0123456789" required />
+                                        <div class="invalid-feedback">
+                                            Vui lòng nhập số điện thoại
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary" id="toastTrigger">Thêm dữ liệu</button>
+                                    <!-- Button trigger modal 2-->
+                                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#ModalQuery2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                        <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+                                    </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-3 pt-4">
+                                <div class="card border-warning mb-3" style="max-width: 18rem;">
+                                    <h6 class="card-header text-warning"><strong>Chú ý</strong></h6>
+                                    <div class="card-body text-warning">
+                                        <p class="card-text">Điền đầy đủ thông tin "Tên", "Email" và "Số điện thoại" </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    {{!-- Table of customer --}}
+    <div class="accordion-item">
+    <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <strong>Customer Info</strong>
+        </button>
+    </h2>
+    {{!-- Table --}}
+    <div id="collapseTwo" class="accordion-collapse show" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+            <div class='mt-4'>
+                <small>
+                    <table class='table table-hover text-center align-middle'>
+                        <thead class="text-center text-uppercase">
+                            <tr>
+                                {{#each allCustomers.[0]}}
+                                    <th>{{@key}}</th>
+                                {{/each}}
+                                    <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                            {{#each allCustomers}}
+                                <tr>
+                                    <td>{{this.id}}</td>
+                                    <td>{{this.name}}</td>
+                                    <td>{{this.age}}</td>
+                                    <td>{{this.gender}}</td>
+                                    <td>{{this.email}}</td>
+                                    <td>{{this.phone}}</td>
+                                    <td>{{moment this.created_at format='DD/MM/YYYY HH:mm:ss'}}</td>
+                                    <td>{{moment this.updated_at format='DD/MM/YYYY HH:mm:ss'}}</td>
+
+                                    <td>
+                                        <div class="d-grid gap-2">
+                                            <a href="/editcustomer/{{this.id}}" type="button" class="btn btn-primary btn-sm">Edit</a> 
+                                            <a href="/deletecustomer/{{this.id}}" type="button" class="btn btn-danger btn-sm">Delete</a> 
+                                        </div>
+                                    </td>
+                                </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </small>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        'use strict'
+        const forms = document.querySelectorAll('.needs-validation')
+
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })()
+</script>
+
+{{!-- MODAL --}}
+
+<!-- Modal 1-->
+<div class="modal fade modal-xl" id="ModalQuery1" tabindex="-1" aria-labelledby="ModalQuery1Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="ModalQuery1Label">Search customer</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="postgresql" style="font-size: 18px;">
+SELECT * FROM customers 
+WHERE (COALESCE($1, name) = name OR $1 IS NULL) 
+AND (COALESCE($2, age) = age OR $2 IS NULL) 
+AND (COALESCE($3, gender) = gender OR $3 IS NULL) 
+AND (COALESCE($4, email) = email OR $4 IS NULL) 
+AND (COALESCE($5, phone) = phone OR $5 IS NULL)
+        </code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 2-->
+<div class="modal fade modal-xl" id="ModalQuery2" tabindex="-1" aria-labelledby="ModalQuery2Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="ModalQuery2Label">Add customer </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="postgresql" style="font-size: 18px;">
+INSERT INTO customers (name, age, gender, email, phone) VALUES ($1, $2, $3, $4, $5)
+        </code></pre>
+      </div>
+    </div>
+  </div>
+</div>

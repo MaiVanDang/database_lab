@@ -1,0 +1,552 @@
+<div class="accordion" id="product">
+    {{!-- Search product --}}
+    
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseZero" aria-expanded="true" aria-controls="collapseZero">
+            <strong>Search product</strong>
+            </button>
+        </h2>
+        <div id="collapseZero" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                {{!-- Input --}}
+                <form method='POST' action='/searchproduct'>
+                    <div class="row">
+                        <div class='col-9'>
+                            <div class="row">
+                                <div class='col-3 mb-3'>
+                                    <label for='search_id-input' class='form-label'>ID:</label>
+                                    <input
+                                        type='text'
+                                        name='search_id'
+                                        class='form-control'
+                                        id='search_id-input'
+                                        placeholder='123'
+                                    />
+                                </div>
+                                <div class='col-6 mb-3'>
+                                    <label for='search_name-input' class='form-label'>Tên sản phẩm:</label>
+                                    <input
+                                        type='text'
+                                        name='search_name'
+                                        class='form-control'
+                                        id='search_name-input'
+                                        placeholder='Samsung S24'
+                                    />
+                                </div>
+                                <div class='col-3 mb-3'>
+                                    <label for='search_catalog-input' class='form-label'>Loại sản phẩm:</label>
+                                    <input name='search_catalog' class='form-control' list="catalogOptions" id='search_catalog-input' placeholder='SmartPhone' />
+                                    <datalist id="catalogOptions"></datalist>
+                                </div>
+                                <div class="col-3">
+                                    <label for='search_supplier-input' class='form-label active'>Nhà sản xuất:</label>
+                                    <input name='search_supplier' class="form-control" list="supplierOptions" id="search_supplier-input" placeholder="Samsung">
+                                    <datalist id="supplierOptions"></datalist>
+                                </div>
+                                <div class='col-3 mb-3'>
+                                    <label for='search_base_price-input' class='form-label'>Giá nhập vào:</label>
+                                    <div class="input-group flex-nowrap">   
+                                        <input
+                                            type='number'
+                                            name='search_base_price'
+                                            class='form-control'
+                                            id='search_base_price-input'
+                                            placeholder='23000000'
+                                        />
+                                        <span class="input-group-text" id="addon-wrapping">đ</span>
+                                    </div>
+                                </div>
+                                <div class='col-3 mb-3'>
+                                    <label for='search_price-input' class='form-label'>Giá bán:</label>
+                                    <div class="input-group flex-nowrap">   
+                                        <input
+                                            type='number'
+                                            name='search_price'
+                                            class='form-control'
+                                            id='search_price-input'
+                                            placeholder='23000000'
+                                        />
+                                        <span class="input-group-text" id="addon-wrapping">đ</span>
+                                    </div>
+                                </div>
+                                <div class='col-3 mb-3'>
+                                    <label for='search_discount-input' class='form-label'>Giảm giá:</label>
+                                    <div class="input-group flex-nowrap">
+                                        <input
+                                            type='number'
+                                            name='search_discount'
+                                            class='form-control'
+                                            id='search_discount-input'
+                                            placeholder='10'
+                                        />
+                                        <span class="input-group-text" id="addon-wrapping">%</span>
+                                    </div>
+                                </div>
+                                <div class='col-3 mb-3'>
+                                    <label for='search_quantity-input' class='form-label'>Số lượng:</label>
+                                    <input
+                                        type='number'
+                                        name='search_quantity'
+                                        class='form-control'
+                                        id='search_quantity-input'
+                                        placeholder='100'
+                                    />
+                                </div>
+                                <div class='col-3 mb-3'>
+                                    <label for='search_mgf-input' class='form-label'>Ngày sản xuất:</label>
+                                    <input
+                                        type='date'
+                                        name='search_mgf'
+                                        class='form-control'
+                                        id='search_mgf-input'
+                                    />
+                                </div>
+                                <div class='col-3 mb-3'>
+                                    <label for='search_created_at-input' class='form-label'>Ngày tạo:</label>
+                                    <input
+                                        type='date'
+                                        name='search_created_at'
+                                        class='form-control'
+                                        id='search_created_at-input'
+                                    />
+                                </div>
+                                <div class='col-3 mb-3'>
+                                    <label for='search_updated_at-input' class='form-label'>Ngày cập nhật:</label>
+                                    <input
+                                        type='date'
+                                        name='search_updated_at'
+                                        class='form-control'
+                                        id='search_updated_at-input'
+                                    />
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button type='submit' class='btn btn-primary'>Tìm kiếm</button>
+                                <!-- Button trigger modal 1-->
+                                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#ModalQuery1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+                                </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class='col-3  pt-4'>
+                            <div class="card border-warning mb-3" style="max-width: 18rem;">
+                                <h6 class="card-header text-warning"><strong>Chú ý</strong></h6>
+                                <div class="card-body text-warning">
+                                    <div class="card-text">
+                                        <p class="card-text"><strong>Chỉnh sửa</strong> và <strong>Xoá</strong> thông tin sản phẩm ở bảng dưới</p>
+                                        <p class="card-text"><strong>Đây là tìm kiếm chính xác</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                {{!-- Table --}}
+                {{#if resultSearch}}
+                    <small>
+                    <table class='table table-hover text-center align-middle table-responsive'>
+                        <thead class="text-center text-uppercase">
+                            <tr>
+                                {{#each resultSearch.[0]}}
+                                    <th>{{@key}}</th>
+                                {{/each}}
+                                    <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="table-group-divider">
+                            {{#each resultSearch}}
+                                <tr>
+                                    <td>{{this.id}}</td>
+                                    <td>{{this.name}}</td>
+                                    <td>{{this.catalog}}</td>
+                                    <td>{{this.supplier_id}}</td>
+                                    <td>{{#if this.mgf}}{{moment this.mgf format='DD/MM/YYYY'}}{{/if}}</td>
+                                    <td>{{this.price}}</td>
+                                    <td>{{this.base_price}}</td>
+                                    <td>{{this.discount}}</td>
+                                    <td>{{this.quantity}}</td>
+                                    {{!-- <td>Mô tả</td> --}}
+                                    <td><a href="{{this.image}}">Link</a></td>
+                                    <td>{{moment this.created_at format='DD/MM/YYYY HH:mm:ss'}}</td>
+                                    <td>{{moment this.updated_at format='DD/MM/YYYY HH:mm:ss'}}</td>
+                                    <td>
+                                        <div class="d-grid gap-2">
+                                            <a href="/editproduct/{{this.id}}" type="button" class="btn btn-primary btn-sm">Edit</a> 
+                                            <a href="/deleteproduct/{{this.id}}" type="button" class="btn btn-danger btn-sm">Delete</a> 
+                                        </div>
+                                    </td>
+                                </tr>
+                            {{/each}}
+                        </tbody>   
+                    </table>
+                    </small>                
+                {{else}}
+                    <p>No results found.</p>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+
+    {{!-- Add product --}}
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <strong>Add product</strong>
+            </button>
+        </h2>
+        {{!-- Input --}}
+        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <div class='mt-4'>
+                    <form class="needs-validation" method='POST' action='/addproduct' novalidate>
+                    <div class="row">
+                        <div class='col-9'>
+                            <div class="row">
+                                <div class='col-3 mb-3'>
+                                    <label for='id-input' class='form-label'>ID:</label>
+                                    <input
+                                        type='text'
+                                        name='id'
+                                        class='form-control'
+                                        id='id-input'
+                                        disabled
+                                    />
+                                </div>
+                                <div class='col-6 mb-3'>
+                                    <label for='name-input' class='form-label'>Tên sản phẩm:</label>
+                                    <input
+                                        type='text'
+                                        name='name'
+                                        class='form-control'
+                                        id='name-input'
+                                        placeholder='Samsung S24'
+                                        required
+                                    />
+                                    <div class="invalid-feedback">
+                                        Vui lòng nhập tên sản phẩm
+                                    </div>
+                                </div>
+                                <div class='col-3 mb-3'>
+                                    <label for='catalog-input' class='form-label'>Loại sản phẩm:</label>
+                                    <input name='catalog' class='form-control' list="catalogOptions" id='catalog-input' placeholder='SmartPhone' />
+                                    <datalist id="catalogOptions"></datalist>
+                                </div>
+                                <div class="col-3">
+                                    <label for='supplier-input' class='form-label active'>Nhà sản xuất:</label>
+                                    <input name='supplier' class="form-control" list="supplierOptions" id="supplier-input" placeholder="Samsung" required>
+                                    <datalist id="supplierOptions"></datalist>
+                                    <div class="invalid-feedback">
+                                        Hãy nhập tên nhà sản xuất
+                                    </div>
+                                </div>
+                                <div class='col-3 mb-3'>
+                                    <label for='mgf-input' class='form-label'>Ngày sản xuất:</label>
+                                    <input
+                                        type='date'
+                                        name='mgf'
+                                        class='form-control'
+                                        id='mgf-input'
+                                        placeholder='2024-12-5'
+                                    />
+                                </div>
+                                <div class='col-3 mb-3'>
+                                    <label for='base_price-input' class='form-label'>Giá nhập vào:</label>
+                                    <div class="input-group flex-nowrap">   
+                                        <input
+                                            type='number'
+                                            name='base_price'
+                                            class='form-control'
+                                            id='base_price-input'
+                                            placeholder='23000000'
+                                            required
+                                        />
+                                        <span class="input-group-text" id="addon-wrapping">đ</span>
+                                    </div>
+                                </div>
+                                <div class='col-3 mb-3'>
+                                    <label for='price-input' class='form-label'>Giá bán:</label>
+                                    <div class="input-group flex-nowrap">   
+                                        <input
+                                            type='number'
+                                            name='price'
+                                            class='form-control'
+                                            id='price-input'
+                                            placeholder='23000000'
+                                            required
+                                        />
+                                        <span class="input-group-text" id="addon-wrapping">đ</span>
+                                    </div>
+                                </div>
+                                <div class='col-2 mb-3'>
+                                    <label for='discount-input' class='form-label'>Giảm giá:</label>
+                                    <div class="input-group flex-nowrap">
+                                        <input
+                                            type='number'
+                                            name='discount'
+                                            class='form-control'
+                                            id='discount-input'
+                                            value='0'
+                                        />
+                                        <span class="input-group-text" id="addon-wrapping">%</span>
+                                    </div>
+                                </div>
+                                <div class='col-2 mb-3'>
+                                    <label for='quantity-input' class='form-label'>Số lượng:</label>
+                                    <input
+                                        type='number'
+                                        name='quantity'
+                                        class='form-control'
+                                        id='quantity-input'
+                                        value='1'
+                                        required
+                                    />
+                                    <div class="invalid-feedback">
+                                        Vui lòng nhập số lượng sản phẩm
+                                    </div>
+                                </div>
+                                <div class='col-8 mb-3'>
+                                    <label for='image-input' class='form-label'>Link hình ảnh sản phẩm:</label>
+                                    <input
+                                        type='text'
+                                        name='image'
+                                        class='form-control'
+                                        id='image-input'
+                                        placeholder='https://cdn.hoanghamobile.com/i/productlist'
+                                    />
+                                </div>
+                                <div class='col-12 mb-3'>
+                                    <label for='description-input' class='form-label'>Mô tả sản phẩm:</label>
+                                    <textarea
+                                        type='text'
+                                        name='description'
+                                        class='form-control'
+                                        id='description-input'
+                                        rows="3"
+                                    ></textarea>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button type='submit' class='btn btn-primary'>Thêm sản phẩm</button>
+                                <!-- Button trigger modal 2-->
+                                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#ModalQuery2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+                                </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class='col-3  pt-4'>
+                            <div class="card border-warning mb-3" style="max-width: 18rem;">
+                                <h6 class="card-header text-warning">Chú ý</h6>
+                                <div class="card-body text-warning">
+                                    <div class="card-text">
+                                        Điền đầy đủ thông tin <strong>"Tên sản phẩm", "Tên nhà sản xuất", "Giá nhập vào", "Giá bán", "Số lượng sản phẩm"</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    {{!-- Table of product --}}
+    <div class="accordion-item">
+    <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <strong>Product Info</strong>
+        </button>
+    </h2>
+    {{!-- Table --}}
+    <div id="collapseTwo" class="accordion-collapse show" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+            <div class='table-responsive mt-4'>
+                <small>
+                <table class='table table-hover text-center align-middle table-responsive'>
+                    <thead class="text-center text-uppercase">
+                        <tr>
+                            {{#each allProduct.[0]}}
+                                <th>{{@key}}</th>
+                            {{/each}}
+                                <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="table-group-divider">
+                        {{#each allProduct}}
+                            <tr>
+                                <td>{{this.id}}</td>
+                                <td>{{this.name}}</td>
+                                <td>{{this.catalog}}</td>
+                                <td>{{this.supplier_id}}</td>
+                                <td>{{#if this.mgf}}{{moment this.mgf format='DD/MM/YYYY'}}{{/if}}</td>
+                                <td>{{this.price}}</td>
+                                <td>{{this.base_price}}</td>
+                                <td>{{this.discount}}</td>
+                                <td>{{this.quantity}}</td>
+                                {{!-- <td>Mô tả</td> --}}
+                                <td><a href="{{this.image}}">Link</a></td>
+                                <td>{{moment this.created_at format='DD/MM/YYYY HH:mm:ss'}}</td>
+                                <td>{{moment this.updated_at format='DD/MM/YYYY HH:mm:ss'}}</td>
+                                <td>
+                                    <div class="d-grid gap-2">
+                                        <a href="/editproduct/{{this.id}}" type="button" class="btn btn-primary btn-sm">Edit</a> 
+                                        <a href="/deleteproduct/{{this.id}}" type="button" class="btn btn-danger btn-sm">Delete</a> 
+                                    </div>
+                                </td>
+                            </tr>
+                        {{/each}}
+                    </tbody>   
+                </table>
+                </small>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Lấy danh sách nhà sản xuất
+        fetch('/getsupplier')
+        .then(response => response.json())
+        .then(data => {
+            const supplierDatalist = document.getElementById('supplierOptions');
+            supplierDatalist.innerHTML = ''; 
+            data.forEach(supplier => {
+                const option = document.createElement('option');
+                option.value = supplier.name;
+                supplierDatalist.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Lỗi khi lấy danh sách nhà sản xuất:', error));
+
+    // Lấy danh sách loại sản phẩm
+        fetch('/getcatalog')
+        .then(response => response.json())
+        .then(data => {
+            const catalogDatalist = document.getElementById('catalogOptions');
+            catalogDatalist.innerHTML = ''; 
+            data.forEach(catalog => {
+                const option = document.createElement('option');
+                option.value = catalog.catalog;
+                catalogDatalist.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Lỗi khi lấy danh sách loại sản phẩm:', error));
+    });
+</script>
+
+<script>
+    (function() {
+        'use strict'
+        const forms = document.querySelectorAll('.needs-validation')
+
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })()
+</script>
+
+<!-- Modal 1-->
+<div class="modal fade modal-xl" id="ModalQuery1" tabindex="-1" aria-labelledby="ModalQuery1Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="ModalQuery1Label">Search product</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="postgresql" style="font-size: 18px;">
+SELECT p.id,p.name,p.catalog,p.supplier_id,p.mgf,p.price::money::numeric::float8,p.base_price::money::numeric::float8,p.discount,p.quantity,p.image,p.created_at,p.updated_at
+FROM products p LEFT JOIN suppliers s ON p.supplier_id = s.id 
+WHERE   (COALESCE($1, p.id) = p.id OR $1 IS NULL)
+    AND (COALESCE($2, p.name) = p.name OR $2 IS NULL) 
+    AND (COALESCE($3, p.catalog) = p.catalog OR $3 IS NULL) 
+    AND (COALESCE($4, s.name) = s.name OR $4 IS NULL) 
+    AND (COALESCE(DATE($5), DATE(p.mgf)) = DATE(p.mgf) OR $5 IS NULL)
+    AND (COALESCE($6, p.price) = p.price OR $6 IS NULL) 
+    AND (COALESCE($7, p.discount) = p.discount OR $7 IS NULL) 
+    AND (COALESCE($8, p.quantity) = p.quantity OR $8 IS NULL)
+    AND (COALESCE(DATE($9), DATE(p.created_at)) = DATE(p.created_at) OR $9 IS NULL)
+    AND (COALESCE(DATE($10), DATE(p.updated_at)) = DATE(p.updated_at) OR $10 IS NULL)
+    AND (COALESCE($11, p.base_price) = p.base_price OR $11 IS NULL)
+ORDER BY p.name ASC
+        </code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 2-->
+<div class="modal fade modal-xl" id="ModalQuery2" tabindex="-1" aria-labelledby="ModalQuery2Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="ModalQuery2Label">Add product</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="postgresql" style="font-size: 18px;">
+SELECT update_data_products($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);
+-- FUNCTION --
+CREATE OR REPLACE FUNCTION update_data_products(
+    p_name VARCHAR(255),
+    p_catalog VARCHAR(255),
+    p_mgf TIMESTAMP,
+    p_supplier_name VARCHAR(255),
+    p_price MONEY, 
+    p_base_price MONEY,
+    p_discount INT, 
+    p_quantity INT,
+    p_description TEXT,
+    p_image VARCHAR(255)
+)
+RETURNS VARCHAR(50)
+AS $$
+DECLARE
+    v_supplier_id INT; -- Khai báo biến v_supplier_id
+BEGIN
+    -- Kiểm tra xem nhà cung cấp có trong bảng suppliers chưa
+    SELECT id INTO v_supplier_id
+    FROM suppliers
+    WHERE name = p_supplier_name;
+    IF v_supplier_id IS NOT NULL THEN
+        -- Nếu nhà cung cấp đã tồn tại, chỉ insert vào bảng products
+        INSERT INTO products (name, catalog, mgf, price, base_price, discount, quantity, description, image, supplier_id)
+        VALUES (p_name, p_catalog, p_mgf, p_price, p_base_price, p_discount, p_quantity, p_description, p_image, v_supplier_id);
+    ELSE
+        -- Nếu nhà cung cấp chưa tồn tại, insert vào bảng suppliers trước, sau đó insert vào bảng products
+        INSERT INTO suppliers ( name)
+        VALUES ( p_supplier_name);
+		SELECT id INTO v_supplier_id
+    	FROM suppliers
+   		WHERE name = p_supplier_name;
+        INSERT INTO products (name, catalog, mgf, price, base_price, discount, quantity, description, image, supplier_id)
+        VALUES (p_name, p_catalog, p_mgf, p_price, p_base_price, p_discount, p_quantity, p_description, p_image, v_supplier_id);
+    END IF;
+
+    RETURN 'Success';
+END;
+$$ LANGUAGE plpgsql;
+        </code></pre>
+      </div>
+    </div>
+  </div>
+</div>

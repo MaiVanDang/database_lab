@@ -1,0 +1,204 @@
+<div class="p-3 bg-body rounded shadow-sm">
+    <h3><strong>Delete Customer</strong></h3>
+    {{!-- Input --}}
+    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+            <div class='mt-4'>
+                <form method='POST' action='/removecustomer/{{customerinfo.[0].id}}'>
+                    <div class="row">
+                        <div class='col-9'>
+                            <div class="row">
+                                <div class='col-5 mb-3'>
+                                    <label for='name-input' class='form-label'>Tên:</label>
+                                    <input
+                                        type='text'
+                                        name='update_name'
+                                        class='form-control'
+                                        id='name-input'
+                                        value = "{{customerinfo.[0].name}}"
+                                        disabled
+                                    />
+                                </div>
+                                <div class='col-3 mb-3'>
+                                    <label for='age-input' class='form-label'>Tuổi:</label>
+                                    <input
+                                        type='text'
+                                        name='update_age'
+                                        class='form-control'
+                                        id='age-input'
+                                        value = '{{customerinfo.[0].age}}'
+                                        disabled
+                                    />
+                                </div>
+                                <div class='col-4 mb-3'>
+                                    <label for='genderSelect' class='form-label'>Giới tính:</label>
+                                    <select id="genderSelect" name="update_gender" value = '{{customerinfo.[0].gender}}' class="form-select" disabled>
+                                        <option value=""></option>
+                                        <option value="Nam">Nam</option>
+                                        <option value="Nữ">Nữ</option>
+                                        <option value="Khác">Khác</option>
+                                    </select>
+                                </div>
+                                <div class='col-5 mb-3'>
+                                    <label for='email-input' class='form-label'>Email:</label>
+                                    <input
+                                        type='text'
+                                        name='update_email'
+                                        class='form-control'
+                                        id='email-input'
+                                        value = {{customerinfo.[0].email}}
+                                        disabled
+                                    />
+                                </div>
+                                <div class='col-3 mb-3'>
+                                    <label for='phone-input' class='form-label'>Số điện thoại:</label>
+                                    <input
+                                        type='text'
+                                        name='update_phone'
+                                        class='form-control'
+                                        id='phone-input'
+                                        value = {{customerinfo.[0].phone}}
+                                        disabled
+                                    />
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button type='submit' class='btn btn-danger' {{#if resultSearch}}disabled{{/if}}>Xoá người dùng</button>
+                                <!-- Button trigger modal 1-->
+                                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#ModalQuery1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+                                </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class='col-3  pt-4'>
+                            <div class="card border-danger mb-3" style="max-width: 18rem;">
+                                <h6 class="card-header text-danger">Chú ý</h6>
+                                <div class="card-body text-danger">
+                                    <p class="card-text">Khi nhấn <strong>Xoá người dùng</strong> thì người dùng có <strong>ID:{{customerinfo.[0].id}}</strong> sẽ bị xoá</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{{#if resultSearch}}
+    <div class="alert alert-danger mt-4" role="alert">   
+        <div class="d-flex justify-content-between">
+            <div class="align-self-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lgme-2" viewBox="0 0 16 16">
+                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                </svg>
+                Không thể xoá khách hàng <strong>{{customerinfo.[0].name}}</strong> - <strong>ID:{{customerinfo.[0].id}}</strong> do khách hàng đã thực hiện các giao dịch sau
+                </div>
+            <a class="btn btn-danger btn-sm" href="/customer" role="button">Quay lại</a>
+        </div>
+    </div>
+    <table class='table table-hover text-center align-middle'>
+        <thead class="text-center text-uppercase">
+            <tr>
+                {{#each resultSearch.[0]}}
+                    <th>{{@key}}</th>
+                {{/each}}
+                    <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody class="table-group-divider">
+            {{#each resultSearch}}
+                <tr>
+                    <td>{{this.id}}</td>
+                    <td>{{this.customer_id}}</td>
+                    <td>{{this.product_id}}</td>
+                    <td>{{this.address}}</td>
+                    <td>{{this.quantity}}</td>
+                    <td>{{this.amount}}</td>
+                    <td>
+                        {{#eq this.status_payment 0}}
+                            <span class='badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill'>
+                                Chưa thanh toán
+                            </span>
+                        {{else}}
+                            {{#eq this.status_payment 1}}
+                                <span class='badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill'>
+                                    Đã thanh toán
+                                </span>
+                            {{else}}
+                                <span class='badge bg-danger-subtle border border-danger-subtle text-danger-emphasis rounded-pill'>
+                                    Huỷ thanh toán
+                                </span>
+                            {{/eq}}
+                        {{/eq}}
+                    </td>
+                    <td>
+                        {{#eq this.status_shipment 0}}
+                            <span
+                                class='badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill'
+                            >Đang xử lý</span>
+                        {{else}}
+                            {{#eq this.status_shipment 1}}
+                                <span
+                                    class='badge bg-info-subtle border border-info-subtle text-info-emphasis rounded-pill'
+                                >Đang giao hàng</span>
+                            {{else}}
+                                {{#eq this.status_shipment 2}}
+                                    <span
+                                        class='badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill'
+                                    >Đã giao hàng</span>
+                                {{else}}
+                                    <span
+                                        class='badge bg-danger-subtle border border-danger-subtle text-danger-emphasis rounded-pill'
+                                    >Huỷ giao hàng</span>
+                                {{/eq}}
+                            {{/eq}}
+                        {{/eq}}
+                    </td>
+                    <td>{{moment this.created_at format='DD/MM/YYYY HH:mm:ss'}}</td>
+                    <td>
+                        <div class="d-grid gap-2">
+                            <a href="/editorder/{{this.id}}" type="button" class="btn btn-primary btn-sm">Edit</a> 
+                            <a href="/deleteorder/{{this.id}}" type="button" class="btn btn-danger btn-sm">Delete</a> 
+                        </div>
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>   
+    </table>               
+{{else}}
+    <div class="alert alert-primary mt-4" role="alert">   
+        <div class="d-flex justify-content-between">
+            <div class="align-self-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-check-lg me-2" viewBox="0 0 16 16">
+                    <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
+                </svg>
+                Có thể xoá khách hàng <strong>{{customerinfo.[0].name}}</strong> - <strong>ID:{{customerinfo.[0].id}}</strong> do chưa tiến hành bất kì giao dịch nào 
+            </div>
+            <a class="btn btn-primary btn-sm" href="/customer" role="button">Quay lại</a>
+        </div>
+    </div>
+{{/if}}
+
+<!-- Modal 1-->
+<div class="modal fade modal-xl" id="ModalQuery1" tabindex="-1" aria-labelledby="ModalQuery1Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="ModalQuery1Label">Delete customer</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="postgresql" style="font-size: 18px;">
+DELETE FROM customers WHERE id = $1
+        </code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+

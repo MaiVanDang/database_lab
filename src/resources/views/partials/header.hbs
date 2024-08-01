@@ -1,0 +1,98 @@
+<nav class='navbar navbar-expand-lg bg-body shadow-sm'>
+    <div class='container-fluid'>
+        <a class="navbar-brand ms-4" style="width: 40px">
+            <img src="https://images.squarespace-cdn.com/content/v1/6151fc1de9760e17a20b7128/fe78d701-101b-4da8-ae9f-62c854214941/3S_140220_LOGO_-39.png" alt="3S Logo" style="width: 100%;">
+            Samsung Store
+        </a>
+        {{!-- <a class='navbar-brand' style="width: 72px">3S</a> --}}
+        {{! search bar }}
+        <div class='navbar-nav mx-auto'>
+            <form method='POST' action='/navbarsearch'> 
+                <div class='input-group' style='min-width: 550px'>
+                    <select class='form-select border border-primary' name='searchType' style='max-width: 150px'>
+                        <option value='customers' selected>customers</option>
+                        <option value='products'>products</option>
+                        <option value='orders'>orders</option>
+                    </select>
+                    <input
+                        type='text'
+                        class='form-control border border-primary'
+                        name='navbarsearch'
+                    />
+                    <button
+                        class='btn btn-outline-primary'
+                        type='submit'
+                    >Tìm kiếm</button>
+                </div>
+            </form>
+        </div>
+
+        <a href="/manageorder" class="btn btn-outline-primary btn-sm" role="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill me-2" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15.528 2.973a.75.75 0 0 1 .472.696v8.662a.75.75 0 0 1-.472.696l-7.25 2.9a.75.75 0 0 1-.557 0l-7.25-2.9A.75.75 0 0 1 0 12.331V3.669a.75.75 0 0 1 .471-.696L7.443.184l.004-.001.274-.11a.75.75 0 0 1 .558 0l.274.11.004.001zm-1.374.527L8 5.962 1.846 3.5 1 3.839v.4l6.5 2.6v7.922l.5.2.5-.2V6.84l6.5-2.6v-.4l-.846-.339Z"/>
+            </svg>
+            Quản lý đơn
+        </a>
+        {{! Login }}
+        {{!-- <div>
+            <button
+                class='btn btn-primary'
+                type='button'
+                data-bs-toggle='offcanvas'
+                data-bs-target='#offcanvasRight'
+                aria-controls='offcanvasRight'
+            >Log in</button>
+
+            <div
+                class='offcanvas offcanvas-end'
+                tabindex='-1'
+                id='offcanvasRight'
+                aria-labelledby='offcanvasRightLabel'
+            >
+                <div class='offcanvas-header'>
+                    <h5 class='offcanvas-title' id='offcanvasRightLabel'>Log in</h5>
+                    <button
+                        type='button'
+                        class='btn-close'
+                        data-bs-dismiss='offcanvas'
+                        aria-label='Close'
+                    ></button>
+                </div>
+
+                <div class='offcanvas-body'>
+                    <form>
+                        {{! username }}
+                        <div class='form-outline mb-4'>
+                            <label
+                                class='form-label'
+                                for='username'
+                            >Username</label>
+                            <input
+                                type='username'
+                                id='username'
+                                class='form-control'
+                            />
+                        </div>
+                        {{! password }}
+                        <div class='form-outline mb-2'>
+                            <label
+                                class='form-label'
+                                for='password'
+                            >Password</label>
+                            <input
+                                type='password'
+                                id='password'
+                                class='form-control'
+                            />
+                        </div>
+                        {{! Login button }}
+                        <button
+                            type='button'
+                            class='btn btn-primary btn-block mb-4'
+                        >Log in</button>
+                    </form>
+                </div>
+            </div>
+        </div>  --}}
+    </div>
+</nav>

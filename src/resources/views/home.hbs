@@ -1,0 +1,300 @@
+{{!-- CARD --}}
+<div class="row">
+    {{!-- Khách hàng --}}
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card shadow h-80 py-2 border-start-custom-blue bg-primary-subtle">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Khách hàng </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{countcustomer.[0].count}}</div>
+                    </div>
+                    <div class="col-auto">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#007bff" class="bi bi-people-fill" viewBox="0 0 16 16">
+                            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Sản phẩm --}}
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card shadow h-80 py-2 border-start-custom-green bg-success-subtle">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success-emphasis text-uppercase mb-1">
+                            Sản phẩm</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{countproduct.[0].count}}</div>
+                    </div>
+                    <div class="col-auto">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#198754" class="bi bi-people-fill" viewBox="0 0 16 16">
+                            <path d="M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15zM5.5 7h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1M.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Đơn hàng --}}
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card shadow h-80 py-2 border-start-custom-red bg-danger-subtle">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-danger-emphasis text-uppercase mb-1">
+                            Đơn hàng</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{countorder.[0].count}}</div>
+                    </div>
+                    <div class="col-auto">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#dc3545" class="bi bi-people-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1 1.5a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 0-1h-13a.5.5 0 0 0-.5.5m0 13a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 0-1h-13a.5.5 0 0 0-.5.5"/>
+                            <path d="M2 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Tổng lợi nhuận --}}
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card shadow h-80 py-2 border-start-custom-yellow bg-warning-subtle">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            Tổng lợi nhuận</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{total_revenue.[0].total_revenue}} đ</div>
+                    </div>
+                    <div class="col-auto">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#ffc107" class="bi bi-people-fill" viewBox="0 0 512 512">
+                            <path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V192c0-35.3-28.7-64-64-64H80c-8.8 0-16-7.2-16-16s7.2-16 16-16H448c17.7 0 32-14.3 32-32s-14.3-32-32-32H64zM416 272a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>       
+                        </svg>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{!-- BODY --}}
+<ul class='nav nav-tabs'>
+    <li class='nav-item'>
+        <a
+            class='nav-link active'
+            data-bs-toggle='tab'
+            href='#customers'
+        >Khách hàng</a>
+    </li>
+    <li class='nav-item'>
+        <a
+            class='nav-link'
+            data-bs-toggle='tab'
+            href='#products'
+        >Sản phẩm</a>
+    </li>
+    <li class='nav-item'>
+        <a
+            class='nav-link'
+            data-bs-toggle='tab'
+            href='#suppliers'
+        >Nhà sản xuất</a>
+    </li>
+    <li class='nav-item'>
+        <a
+            class='nav-link'
+            data-bs-toggle='tab'
+            href='#orders'
+        >Đơn hàng</a>
+    </li>
+    <li class='nav-item'>
+        <a class='nav-link' data-bs-toggle='tab' href='#others'>Khác</a>
+    </li>
+</ul>
+
+<div class='tab-content bg-body shadow-sm'>
+    <div class='tab-pane container active' id='customers'>
+        <small>
+            <table class='table table-hover text-center align-middle'>
+                <thead class="text-center text-uppercase">
+                    <tr>
+                        {{#each customers.[0]}}
+                            <th>{{@key}}</th>
+                        {{/each}}
+                            <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    {{#each customers}}
+                        <tr>
+                            <td>{{this.id}}</td>
+                            <td>{{this.name}}</td>
+                            <td>{{this.age}}</td>
+                            <td>{{this.gender}}</td>
+                            <td>{{this.email}}</td>
+                            <td>{{this.phone}}</td>
+                            <td>{{moment this.created_at format='DD/MM/YYYY HH:mm:ss'}}</td>
+                            <td>{{moment this.updated_at format='DD/MM/YYYY HH:mm:ss'}}</td>
+
+                            <td>
+                                <div class="d-grid gap-2">
+                                    <a href="/editcustomer/{{this.id}}" type="button" class="btn btn-primary btn-sm">Edit</a> 
+                                    <a href="/deletecustomer/{{this.id}}" type="button" class="btn btn-danger btn-sm">Delete</a> 
+                                </div>
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </small>
+    </div>
+    <div class='tab-pane container fade' id='products'>           
+        <small>
+            <table class='table table-hover text-center align-middle table-responsive'>
+                <thead class="text-center text-uppercase">
+                    <tr>
+                        {{#each products.[0]}}
+                            <th>{{@key}}</th>
+                        {{/each}}
+                            <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody class="table-group-divider">
+                    {{#each products}}
+                        <tr>
+                            <td>{{this.id}}</td>
+                            <td>{{this.name}}</td>
+                            <td>{{this.catalog}}</td>
+                            <td>{{this.supplier_id}}</td>
+                            <td>{{#if this.mgf}}{{moment this.mgf format='DD/MM/YYYY'}}{{/if}}</td>
+                            <td>{{this.price}}</td>
+                            <td>{{this.base_price}}</td>
+                            <td>{{this.discount}}</td>
+                            <td>{{this.quantity}}</td>
+                            {{!-- <td>Mô tả</td> --}}
+                            <td><a href="{{this.image}}">Link</a></td>
+                            <td>{{moment this.created_at format='DD/MM/YYYY HH:mm:ss'}}</td>
+                            <td>{{moment this.updated_at format='DD/MM/YYYY HH:mm:ss'}}</td>
+                            <td>
+                                <div class="d-grid gap-2">
+                                    <a href="/editproduct/{{this.id}}" type="button" class="btn btn-primary btn-sm">Edit</a> 
+                                    <a href="/deleteproduct/{{this.id}}" type="button" class="btn btn-danger btn-sm">Delete</a> 
+                                </div>
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>   
+            </table>
+        </small>  
+    </div>
+    <div class='tab-pane container fade' id='suppliers'>
+        <small>
+            <table class='table table-hover text-center align-middle'>
+                <thead class="text-center text-uppercase">
+                    <tr>
+                        {{#each suppliers.[0]}}
+                            <th>{{@key}}</th>
+                        {{/each}}
+                            <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    {{#each suppliers}}
+                        <tr>
+                            <td>{{this.id}}</td>
+                            <td>{{this.name}}</td>
+                            <td>{{this.address}}</td>
+                            <td>Mô tả</td>
+                            <td>{{moment this.created_at format='DD/MM/YYYY HH:mm:ss'}}</td>
+                            <td>{{moment this.updated_at format='DD/MM/YYYY HH:mm:ss'}}</td>
+
+                            <td>
+                                <div class="d-grid gap-2">
+                                    <a href="/editsupplier/{{this.id}}" type="button" class="btn btn-primary btn-sm">Edit</a> 
+                                    <a href="/deletesupplier/{{this.id}}" type="button" class="btn btn-danger btn-sm">Delete</a> 
+                                </div>
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </small>
+    </div>
+    <div class='tab-pane container fade' id='orders'>
+        <table class='table table-hover text-center align-middle'>
+            <thead class="text-center text-uppercase">
+                <tr>
+                    {{#each orders.[0]}}
+                        <th>{{@key}}</th>
+                    {{/each}}
+                        <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody class="table-group-divider">
+                {{#each orders}}
+                    <tr>
+                        <td>{{this.id}}</td>
+                        <td>{{this.customer_id}}</td>
+                        <td>{{this.product_id}}</td>
+                        <td>{{this.address}}</td>
+                        <td>{{this.quantity}}</td>
+                        <td>{{this.amount}}</td>
+                        <td>
+                            {{#eq this.status_payment 0}}
+                                <span class='badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill'>
+                                    Chưa thanh toán
+                                </span>
+                            {{else}}
+                                {{#eq this.status_payment 1}}
+                                    <span class='badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill'>
+                                        Đã thanh toán
+                                    </span>
+                                {{else}}
+                                    <span class='badge bg-danger-subtle border border-danger-subtle text-danger-emphasis rounded-pill'>
+                                        Huỷ thanh toán
+                                    </span>
+                                {{/eq}}
+                            {{/eq}}
+                        </td>
+                        <td>
+                            {{#eq this.status_shipment 0}}
+                                <span
+                                    class='badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill'
+                                >Đang xử lý</span>
+                            {{else}}
+                                {{#eq this.status_shipment 1}}
+                                    <span
+                                        class='badge bg-info-subtle border border-info-subtle text-info-emphasis rounded-pill'
+                                    >Đang giao hàng</span>
+                                {{else}}
+                                    {{#eq this.status_shipment 2}}
+                                        <span
+                                            class='badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill'
+                                        >Đã giao hàng</span>
+                                    {{else}}
+                                        <span
+                                            class='badge bg-danger-subtle border border-danger-subtle text-danger-emphasis rounded-pill'
+                                        >Huỷ giao hàng</span>
+                                    {{/eq}}
+                                {{/eq}}
+                            {{/eq}}
+                        </td>
+                        <td>{{moment this.created_at format='DD/MM/YYYY HH:mm:ss'}}</td>
+                        <td>
+                            {{#eq this.status_shipment 0}}<a href="/editorder/{{this.id}}" type="button" class="btn btn-primary btn-sm" disabled>Edit</a>{{/eq}}
+                        </td>
+                    </tr>
+                {{/each}}
+            </tbody>   
+        </table>
+    </div>
+    <div class='tab-pane container fade' id='others'>
+    </div>
+</div>

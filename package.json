@@ -1,0 +1,47 @@
+{
+  "name": "database_lab",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "watch": "node-sass --watch src/resources/scss --output src/public/css",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "beautiful": "prettier --write --single-quote --trailing-comma all --tab-width 4 --write 'src/**/*.{js,json,scss,hbs}'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pikasonix/database_lab.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pikasonix/database_lab/issues"
+  },
+  "homepage": "https://github.com/pikasonix/database_lab#readme",
+  "lint-staged": {
+    "src/**/*.{js,json,scss,hbs}": "prettier --write --single-quote --trailing-comma all --tab-width 4 --write"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "express": "^4.19.1",
+    "express-handlebars": "^7.1.2",
+    "handlebars": "^4.7.8",
+    "handlebars-helpers": "^0.10.0",
+    "handlebars.moment": "^1.0.4",
+    "node-sass": "^9.0.0",
+    "pg": "^8.11.3"
+  },
+  "devDependencies": {
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.0",
+    "prettier": "^3.2.5"
+  }
+}
