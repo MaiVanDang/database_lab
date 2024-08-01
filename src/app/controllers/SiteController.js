@@ -4,7 +4,7 @@ const { Pool } = require('pg');
 const pool = new Pool({
     user: 'postgres',
     host: 'localhost',
-    database: 'database_dev',
+    database: 'postgres',
     password: 'admin',
     port: 5432,
 });
@@ -181,7 +181,7 @@ class SiteController {
                 , [req.params.id], (err, resultSearch) => {
                 if (err) {
                     console.error('Lỗi', err);
-                    return res.status(500).send('Lỗi cơ sở dữ liệu 2');
+                    return res.status(500).send('Lỗi cơ sở dữ liệu');
                 }
                 res.render('deletecustomer', { customerinfo: result.rows, resultSearch: resultSearch.rows });
             });
@@ -624,14 +624,15 @@ statistic(req, res) {
         FROM get_best_selling_products()`, (err, topProducts) => {
         if (err) {
             console.error('Lỗi khi truy vấn dữ liệu:', err);
-            return res.status(500).send('Lỗi cơ sở dữ liệu');
+            return res.status(500).send('Lỗi cơ sở dữ liệu 1');
         }
 
-        pool.query(`SELECT supplier_name, supplier_address, total_quantity_sold, total_amount::money::numeric::float8, total_order, rank_num
+        // pool.query(`SELECT supplier_name, supplier_address, total_quantity_sold, total_amount::money::numeric::float8, total_order, rank_num
+        pool.query(`SELECT supplier_name, total_quantity_sold, rank_num   
             FROM rank_of_suppliers()`, (err, topSuppliers) => {
             if (err) {
                 console.error('Lỗi khi truy vấn dữ liệu:', err);
-                return res.status(500).send('Lỗi cơ sở dữ liệu');
+                return res.status(500).send('Lỗi cơ sở dữ liệu 2');
             }
 
             pool.query(`
@@ -639,7 +640,7 @@ statistic(req, res) {
                 FROM get_top_customers($1, $2, $3);`, [begin_date, end_date, number], (err, topCustomers) => {
                 if (err) {
                     console.error('Lỗi khi truy vấn dữ liệu:', err);
-                    return res.status(500).send('Lỗi cơ sở dữ liệu');
+                    return res.status(500).send('Lỗi cơ sở dữ liệu 3');
                 }
 
                 pool.query(`
