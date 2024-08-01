@@ -624,15 +624,15 @@ statistic(req, res) {
         FROM get_best_selling_products()`, (err, topProducts) => {
         if (err) {
             console.error('Lỗi khi truy vấn dữ liệu:', err);
-            return res.status(500).send('Lỗi cơ sở dữ liệu 1');
+            return res.status(500).send('Lỗi cơ sở dữ liệu');
         }
 
         // pool.query(`SELECT supplier_name, supplier_address, total_quantity_sold, total_amount::money::numeric::float8, total_order, rank_num
-        pool.query(`SELECT supplier_name, total_quantity_sold, rank_num   
+        pool.query(`SELECT supplier_name, supplier_address, total_quantity_sold, total_amount::money::numeric::float8, total_order, rank_num   
             FROM rank_of_suppliers()`, (err, topSuppliers) => {
             if (err) {
                 console.error('Lỗi khi truy vấn dữ liệu:', err);
-                return res.status(500).send('Lỗi cơ sở dữ liệu 2');
+                return res.status(500).send('Lỗi cơ sở dữ liệu');
             }
 
             pool.query(`

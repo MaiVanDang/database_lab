@@ -386,26 +386,41 @@ $$ LANGUAGE plpgsql;
 
 --Xuất ra bảng xếp hạng của các hãng được quan tâm-- 
 CREATE OR REPLACE FUNCTION rank_of_suppliers()
-RETURNS TABLE (supplier_name VARCHAR(255), total_quantity_sold INT, rank_num BIGINT)
+RETURNS TABLE(
+    supplier_name VARCHAR(255),
+    supplier_address VARCHAR(255),
+    total_amount MONEY, 
+    total_order INT, 
+    total_quantity_sold INT, 
+    rank_num BIGINT
+)
 AS $$
 BEGIN
-	RETURN QUERY
-	WITH number_of_purchases AS(
-	SELECT
-		s.id AS supplier_id,
-		s.name AS supplier_name,
-		SUM(o.quantity) :: INT AS total_quantity_sold
-	FROM products p
-	INNER JOIN suppliers s ON s.id = p.supplier_id
-	INNER JOIN orders o ON o.product_id = p.id
-	WHERE o.status_payment = 1
-	GROUP BY s.id
-	)
-	SELECT
-		number_of_purchases.supplier_name,
-		number_of_purchases.total_quantity_sold,
-		RANK() OVER (ORDER BY number_of_purchases.total_quantity_sold DESC) AS rank_num
-	FROM number_of_purchases;
+    RETURN QUERY
+    WITH number_of_purchases AS (
+        SELECT
+            s.id AS supplier_id,
+            s.name AS supplier_name,
+            s.address AS supplier_address,
+            SUM(o.quantity * p.price * p.discount) AS total_amount,
+            COUNT(o.id):: INT AS total_order,
+            SUM(o.quantity):: INT AS total_quantity_sold
+        FROM products p
+        INNER JOIN suppliers s ON s.id = p.supplier_id
+        INNER JOIN orders o ON o.product_id = p.id
+        WHERE o.status_payment = 1
+        GROUP BY s.id
+    )
+    SELECT
+        number_of_purchases.supplier_name,
+        number_of_purchases.supplier_address,
+        number_of_purchases.total_amount,
+        number_of_purchases.total_order,
+        number_of_purchases.total_quantity_sold,
+        RANK() OVER (ORDER BY number_of_purchases.total_amount DESC) AS rank_num
+    FROM number_of_purchases
+	LIMIT 3;
+	
 END;
 $$ LANGUAGE plpgsql;
 -- SELECT * FROM rank_of_suppliers();
